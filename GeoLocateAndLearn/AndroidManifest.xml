@@ -48,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LocationActivity"
+            android:name=".ChallengeActivity"
             android:label="@string/title_activity_location" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

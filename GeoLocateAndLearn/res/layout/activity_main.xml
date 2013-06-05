@@ -19,14 +19,16 @@
             android:layout_width="wrap_content"
              android:layout_height="135dp"
             android:src="@drawable/nearby"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="nearbyBtn" />
         
          <ImageView
              android:id="@+id/challenges"
              android:layout_width="wrap_content"
              android:layout_height="135dp"
              android:layout_weight="1.00"
-             android:src="@drawable/challenges" />
+             android:src="@drawable/challenges"
+            android:onClick="challengeBtn" />
 
     </LinearLayout>
 
@@ -39,14 +41,16 @@
             android:layout_width="wrap_content"
              android:layout_height="135dp"
             android:src="@drawable/about"
-            android:layout_weight="1"  />
+            android:layout_weight="1"
+            android:onClick="aboutBtn"  />
         
          <ImageView
              android:id="@+id/me"
              android:layout_width="wrap_content"
              android:layout_height="135dp"
              android:layout_weight="1.00"
-             android:src="@drawable/me" />
+             android:src="@drawable/me"
+            android:onClick="meBtn" />
          
     </LinearLayout>
 

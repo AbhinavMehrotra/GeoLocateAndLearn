@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class LocationActivity extends Activity {
+public class ChallengeActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
