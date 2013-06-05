@@ -8,6 +8,7 @@
     <string name="title_activity_me">MeActivity</string>
     <string name="title_activity_nearby">NearbyActivity</string>
     <string name="title_activity_location">LocationActivity</string>
+    <string name="app_id">518620884845095</string>
     <string name="about_content">Pearson English Learn and Go is a location-aware mobile application, 
         designed to supplement formal learning in language schools around the world. 
 		It provides genuine immersion in the life and culture of English-speaking cities in which students study, 
@@ -17,5 +18,6 @@
  		Challenge content has been created by Pearson English, with dictionary definitions from the Longman Dictionary of Contemporary English.
  		Developers: Adam, Abhinav, Dean, Jacqueline, Nathan, Steve.
  		Event: Pan Pearson Hackathon 2013.</string>
+    <string name="title_activity_locations">LocationsActivity</string>
 
 </resources>

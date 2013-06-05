@@ -1,14 +1,55 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:src="@drawable/header" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MeActivity" />
+        android:layout_weight="0.76" >
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/facebookBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/facebook"
+            android:onClick="facebookBtn" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="5dp" >
+
+        <ImageView
+            android:id="@+id/footer_home"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@color/Black"
+            android:onClick="footer_homeBtn"
+            android:src="@drawable/footer_home" />
+
+        <ImageView
+            android:id="@+id/footer_compass"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1.00"
+            android:background="@color/Black"
+            android:cropToPadding="false"
+            android:onClick="footer_compassBtn"
+            android:src="@drawable/footer_compass" />
+    </LinearLayout>
+
+</LinearLayout>
