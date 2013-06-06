@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:onClick="nearbyBtn"
         android:padding="5dp"
-        android:src="@drawable/nearby" />
+        android:src="@drawable/ic_nearby" />
 
     <ImageView
         android:id="@+id/practice_challenges"
@@ -32,7 +32,7 @@
         android:layout_below="@id/nearby"
         android:onClick="aboutBtn"
         android:padding="5dp"
-        android:src="@drawable/about" />
+        android:src="@drawable/ic_about" />
 
     <ImageView
         android:id="@+id/me"
@@ -42,6 +42,6 @@
         android:layout_alignLeft="@id/practice_challenges"
         android:onClick="meBtn"
         android:padding="5dp"
-        android:src="@drawable/me" />
+        android:src="@drawable/ic_me" />
 
 </RelativeLayout>
