@@ -19,12 +19,12 @@
  		Developers: Adam, Abhinav, Dean, Jacqueline, Nathan, Steve.
  		Event: Pan Pearson Hackathon 2013.</string>
     <string name="title_activity_locations">LocationsActivity</string>
-    <string name="preferences">Preferences</string>
     <string name="title_activity_london">LondonActivity</string>
     <string name="title_activity_new_york">NewYorkActivity</string>
     <string name="title_activity_borough_market">BoroughMarketActivity</string>
     <string name="title_activity_borough_market_compass">BoroughMarketCompassActivity</string>
     <string name="title_activity_castle">CastleActivity</string>
     <string name="title_activity_castle_compass">CastleCompassActivity</string>
+    <string name="title_activity_geo_track">GeoTrackActivity</string>
 
 </resources>

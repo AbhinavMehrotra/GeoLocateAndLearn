@@ -39,10 +39,11 @@
                     android:id="@+id/textViewBorough"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="boroughBtn"
                     android:text="Borough Market"
                     android:textColor="@color/Black"
-                    android:textSize="17dp"
-                    android:onClick="boroughBtn" />
+                    android:textSize="17dp" />
 
                 <ImageView
                     android:id="@+id/imageViewBorough"

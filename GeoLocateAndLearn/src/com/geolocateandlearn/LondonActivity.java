@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class LondonActivity extends Activity {
 
@@ -29,6 +30,7 @@ public class LondonActivity extends Activity {
 
 	//This will be called when borough image is clicked
 	public void boroughBtn(View v){
+		//Toast.makeText(getApplicationContext(), "yes", Toast.LENGTH_LONG).show();
 		intent=new Intent(this, BoroughMarketActivity.class);
 		startActivity(intent);
 	}
