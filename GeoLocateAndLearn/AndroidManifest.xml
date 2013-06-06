@@ -4,10 +4,10 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="17" />
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:icon="@drawable/ic_launcher_2"
@@ -22,36 +22,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+        <activity
+            android:name=".MainPreferencesActivity"
+            android:label="@string/preferences" />
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about" >
         </activity>
-        
         <activity
             android:name=".MeActivity"
             android:label="@string/title_activity_me" >
         </activity>
-        
         <activity
             android:name=".NearbyActivity"
             android:label="@string/title_activity_nearby" >
         </activity>
-        
         <activity
             android:name=".ChallengeActivity"
             android:label="@string/title_activity_location" >
         </activity>
-        
         <activity
             android:name=".LocationsActivity"
             android:label="@string/title_activity_locations" >
         </activity>
-        
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/app_id" />
-        
     </application>
 
 </manifest>

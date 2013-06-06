@@ -19,5 +19,6 @@
  		Developers: Adam, Abhinav, Dean, Jacqueline, Nathan, Steve.
  		Event: Pan Pearson Hackathon 2013.</string>
     <string name="title_activity_locations">LocationsActivity</string>
+    <string name="preferences">Preferences</string>
 
 </resources>
