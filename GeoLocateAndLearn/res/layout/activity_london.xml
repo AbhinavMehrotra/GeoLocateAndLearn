@@ -41,13 +41,15 @@
                     android:layout_height="wrap_content"
                     android:text="Borough Market"
                     android:textColor="@color/Black"
-                    android:textSize="17dp" />
+                    android:textSize="17dp"
+                    android:onClick="boroughBtn" />
 
                 <ImageView
                     android:id="@+id/imageViewBorough"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/android" />
+                    android:src="@drawable/android"
+                    android:onClick="boroughCompassBtn" />
             </LinearLayout>
 
             <LinearLayout
