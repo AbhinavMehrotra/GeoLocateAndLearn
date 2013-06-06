@@ -1,14 +1,60 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewNearBy"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".LocationsActivity" />
+        android:text="Nearby"
+        android:textColor="@color/Red"
+        android:textSize="30dp" />
 
-</RelativeLayout>
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.75" >
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="5dp" >
+
+        <ImageView
+            android:id="@+id/footer_home"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@color/Black"
+            android:onClick="footer_homeBtn"
+            android:src="@drawable/footer_home" />
+
+        <ImageView
+            android:id="@+id/footer_compass"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1.00"
+            android:background="@color/Black"
+            android:cropToPadding="false"
+            android:onClick="footer_compassBtn"
+            android:src="@drawable/footer_compass" />
+    </LinearLayout>
+
+</LinearLayout>
