@@ -24,6 +24,8 @@ public class LondonActivity extends Activity {
 
 	// This will be called when borough image is clicked
 	public void boroughBtn(View v) {
+		// Toast.makeText(getApplicationContext(), "yes",
+		// Toast.LENGTH_LONG).show();
 		intent = new Intent(this, BoroughMarketActivity.class);
 		startActivity(intent);
 	}

@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 
 	// This will be called when nearby image is clicked
 	public void nearbyBtn(View v) {
-		intent = new Intent(this, LocationsActivity.class);
+		intent = new Intent(this, NearbyActivity.class);
 		startActivity(intent);
 	}
 
@@ -56,6 +56,7 @@ public class MainActivity extends Activity {
 		final Intent preferencesIntent = new Intent(this,
 				MainPreferencesActivity.class);
 		startActivity(preferencesIntent);
+
 	}
 
 }

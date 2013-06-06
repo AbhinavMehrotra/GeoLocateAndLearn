@@ -39,6 +39,7 @@
                     android:id="@+id/textViewBorough"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
                     android:onClick="boroughBtn"
                     android:text="Borough Market"
                     android:textColor="@color/Black"
