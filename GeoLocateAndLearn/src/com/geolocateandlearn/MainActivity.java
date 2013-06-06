@@ -16,10 +16,6 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		ImageView footer_home= (ImageView) findViewById(R.id.footer_home);
-		ImageView footer_compass= (ImageView) findViewById(R.id.footer_compass);
-		footer_home.setClickable(false);
-		footer_compass.setClickable(true);
 	}
 
 	@Override
@@ -28,47 +24,33 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	//This will be called when about image is clicked
-	public void aboutBtn(View v){
-		intent=new Intent(this, AboutActivity.class);
+	// This will be called when about image is clicked
+	public void aboutBtn(View v) {
+		intent = new Intent(this, AboutActivity.class);
 		startActivity(intent);
 	}
 
-
-	//This will be called when challenge image is clicked
-	public void challengeBtn(View v){
-		intent=new Intent(this, ChallengeActivity.class);
+	// This will be called when challenge image is clicked
+	public void challengeBtn(View v) {
+		intent = new Intent(this, ChallengeActivity.class);
 		startActivity(intent);
 	}
 
-
-	//This will be called when nearby image is clicked
-	public void nearbyBtn(View v){
-		intent=new Intent(this, LocationsActivity.class);
+	// This will be called when nearby image is clicked
+	public void nearbyBtn(View v) {
+		intent = new Intent(this, LocationsActivity.class);
 		startActivity(intent);
 	}
 
-
-	//This will be called when me image is clicked
-	public void meBtn(View v){
-		intent=new Intent(this, MeActivity.class);
+	// This will be called when me image is clicked
+	public void meBtn(View v) {
+		intent = new Intent(this, MeActivity.class);
 		startActivity(intent);
 	}
 
-	//This will be called when footer_home image is clicked
-	public void footer_homeBtn(View v){
-		//do nothing as we are on the same page
-	}
-
-
-	//This will be called when footer_compass image is clicked
-	public void footer_compassBtn(View v){
-		intent=new Intent(this, NearbyActivity.class);
-		startActivity(intent);
-	}
-	
-	public void editPreferences (MenuItem menuItem) {
-		final Intent preferencesIntent = new Intent(this, MainPreferencesActivity.class);
+	public void editPreferences(MenuItem menuItem) {
+		final Intent preferencesIntent = new Intent(this,
+				MainPreferencesActivity.class);
 		startActivity(preferencesIntent);
 	}
 

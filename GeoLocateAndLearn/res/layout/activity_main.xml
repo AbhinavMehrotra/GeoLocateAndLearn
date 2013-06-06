@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:paddingTop="10dp" >
 
-   
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -28,7 +27,6 @@
             android:onClick="challengeBtn"
             android:padding="5dp"
             android:src="@drawable/challenges" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -52,33 +50,6 @@
             android:onClick="meBtn"
             android:padding="5dp"
             android:src="@drawable/me" />
-
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="15dp" >
-
-        <ImageView
-            android:id="@+id/footer_home"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:onClick="footer_homeBtn"
-            android:src="@drawable/footer_home"
-            android:background="@color/Black"  />
-
-        <ImageView
-            android:id="@+id/footer_compass"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_weight="1.00"
-            android:background="@color/Black"
-            android:cropToPadding="false"
-            android:onClick="footer_compassBtn"
-            android:src="@drawable/footer_compass" />
-
-    </LinearLayout>
 </LinearLayout>

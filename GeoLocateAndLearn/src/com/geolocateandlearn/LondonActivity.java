@@ -15,10 +15,6 @@ public class LondonActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_london);
-		ImageView footer_home= (ImageView) findViewById(R.id.footer_home);
-		ImageView footer_compass= (ImageView) findViewById(R.id.footer_compass);
-		footer_home.setClickable(true);
-		footer_compass.setClickable(true);
 	}
 
 	@Override
@@ -27,29 +23,16 @@ public class LondonActivity extends Activity {
 		return true;
 	}
 
-	//This will be called when borough image is clicked
-	public void boroughBtn(View v){
-		intent=new Intent(this, BoroughMarketActivity.class);
+	// This will be called when borough image is clicked
+	public void boroughBtn(View v) {
+		intent = new Intent(this, BoroughMarketActivity.class);
 		startActivity(intent);
 	}
 
-
-	//This will be called when borough_compass image is clicked
-	public void boroughCompassBtn(View v){
-		intent=new Intent(this, BoroughMarketCompassActivity.class);
+	// This will be called when borough_compass image is clicked
+	public void boroughCompassBtn(View v) {
+		intent = new Intent(this, BoroughMarketCompassActivity.class);
 		startActivity(intent);
 	}
 
-	//This will be called when footer_home image is clicked
-	public void footer_homeBtn(View v){
-		intent=new Intent(this, MainActivity.class);
-		startActivity(intent);
-	}
-
-
-	//This will be called when footer_compass image is clicked
-	public void footer_compassBtn(View v){
-		intent=new Intent(this, NearbyActivity.class);
-		startActivity(intent);
-	}
 }
