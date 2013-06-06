@@ -6,8 +6,8 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:icon="@drawable/ic_launcher_2"
@@ -22,36 +22,49 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about" >
         </activity>
-        
         <activity
             android:name=".MeActivity"
             android:label="@string/title_activity_me" >
         </activity>
-        
         <activity
             android:name=".NearbyActivity"
             android:label="@string/title_activity_nearby" >
         </activity>
-        
         <activity
             android:name=".ChallengeActivity"
             android:label="@string/title_activity_location" >
         </activity>
-        
         <activity
             android:name=".LocationsActivity"
             android:label="@string/title_activity_locations" >
         </activity>
-        
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/app_id" />
-        
+
+        <activity
+            android:name=".LondonActivity"
+            android:label="@string/title_activity_london" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".NewYorkActivity"
+            android:label="@string/title_activity_new_york" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
