@@ -5,6 +5,22 @@
     android:orientation="vertical"
     android:padding="20dp" >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <!-- Icons: listen, speak, read, write -->
+
+        <CheckBox
+            android:id="@+id/listening_skills_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:checked="false"
+            android:button="@drawable/statelist_skill_listening"
+            />
+    </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
