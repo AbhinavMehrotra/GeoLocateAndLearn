@@ -23,25 +23,25 @@
             android:id="@+id/speaking_skills_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:button="@drawable/statelist_skill_speaking"
-            android:checked="false"
-            android:paddingLeft="20dp" />
+            android:checked="false" />
 
         <CheckBox
             android:id="@+id/reading_skills_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:button="@drawable/statelist_skill_reading"
-            android:checked="false"
-            android:paddingLeft="20dp" />
+            android:checked="false" />
 
         <CheckBox
             android:id="@+id/writing_skills_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:button="@drawable/statelist_skill_writing"
-            android:checked="false"
-            android:paddingLeft="20dp" />
+            android:checked="false" />
     </LinearLayout>
 
     <TextView
