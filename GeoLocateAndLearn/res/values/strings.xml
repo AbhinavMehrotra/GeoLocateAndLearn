@@ -20,5 +20,7 @@
  		Event: Pan Pearson Hackathon 2013.</string>
     <string name="title_activity_locations">LocationsActivity</string>
     <string name="preferences">Preferences</string>
+    <string name="title_activity_london">LondonActivity</string>
+    <string name="title_activity_new_york">NewYorkActivity</string>
 
 </resources>
