@@ -5,6 +5,9 @@
         android:key="nickname"
         android:title="Nickname" />
     <EditTextPreference
+        android:key="institution"
+        android:title="School / Institution" />
+    <EditTextPreference
         android:key="emailAddress"
         android:title="Email address" />
 
