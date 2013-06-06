@@ -15,16 +15,31 @@
         <CheckBox
             android:id="@+id/listening_skills_selector"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            android:checked="false"
+            android:layout_height="wrap_content"
             android:button="@drawable/statelist_skill_listening"
-            />
-    </LinearLayout>
+            android:checked="false" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Skills icons" />
+        <CheckBox
+            android:id="@+id/speaking_skills_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/statelist_skill_speaking"
+            android:checked="false" />
+
+        <CheckBox
+            android:id="@+id/reading_skills_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/statelist_skill_reading"
+            android:checked="false" />
+
+        <CheckBox
+            android:id="@+id/writing_skills_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/statelist_skill_writing"
+            android:checked="false" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
