@@ -35,8 +35,7 @@ public class MainActivity extends Activity {
 	 * @param v
 	 */
 	public void practiceChallengesButton(View v) {
-		// TODO
-		intent = new Intent(this, ChallengeActivity.class);
+		intent = new Intent(this, PracticeChallengesActivity.class);
 		startActivity(intent);
 	}
 

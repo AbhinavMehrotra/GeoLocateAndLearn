@@ -85,7 +85,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".ChallengeActivity"
+            android:name=".PracticeChallengesActivity"
             android:label="@string/title_activity_location"
             android:parentActivityName=".MainActivity" >
 

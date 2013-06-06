@@ -27,5 +27,7 @@
     <string name="title_activity_castle">CastleActivity</string>
     <string name="title_activity_castle_compass">CastleCompassActivity</string>
     <string name="title_activity_geo_track">GeoTrackActivity</string>
+    <string name="reset">Reset</string>
+    <string name="reset_skills">Reset Skills</string>
 
 </resources>
