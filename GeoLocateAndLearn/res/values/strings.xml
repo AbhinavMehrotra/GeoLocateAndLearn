@@ -8,6 +8,7 @@
     <string name="title_activity_me">MeActivity</string>
     <string name="title_activity_nearby">NearbyActivity</string>
     <string name="title_activity_location">LocationActivity</string>
+    <string name="preferences">Preferences</string>
     <string name="app_id">518620884845095</string>
     <string name="about_content">Pearson English Learn and Go is a location-aware mobile application, 
         designed to supplement formal learning in language schools around the world. 

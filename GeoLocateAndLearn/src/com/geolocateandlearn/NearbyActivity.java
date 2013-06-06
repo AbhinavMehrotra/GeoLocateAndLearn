@@ -22,25 +22,26 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 
-public class NearbyActivity extends FragmentActivity{
+public class NearbyActivity extends FragmentActivity {
 
 	private GoogleMap mMap;
 	private MapView mapView;
 	private MapController mapController;
 	private LocationManager locationManager;
 	private GeoPoint p;
-	List<Overlay> listOfOverlays ;
-	private String Tag ="Geo Tagger";
+	List<Overlay> listOfOverlays;
+	private String Tag = "Geo Tagger";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nearby);
 		setUpMapIfNeeded();
-		//		initMap();
-		//		LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
-		//	    String provider = lm.getBestProvider(new Criteria(), true);
-		//	    lm.requestLocationUpdates(provider, 10000, 0, this);
+		// initMap();
+		// LocationManager lm = (LocationManager)
+		// getSystemService(LOCATION_SERVICE);
+		// String provider = lm.getBestProvider(new Criteria(), true);
+		// lm.requestLocationUpdates(provider, 10000, 0, this);
 	}
 
 	@Override
@@ -50,29 +51,32 @@ public class NearbyActivity extends FragmentActivity{
 	}
 
 	private void setUpMapIfNeeded() {
-		// Do a null check to confirm that we have not already instantiated the map.
+		// Do a null check to confirm that we have not already instantiated the
+		// map.
 		if (mMap == null) {
 			// Try to obtain the map from the SupportMapFragment.
-			mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-					.getMap();
+			mMap = ((SupportMapFragment) getSupportFragmentManager()
+					.findFragmentById(R.id.map)).getMap();
 			// Check if we were successful in obtaining the map.
 			if (mMap != null) {
 				try {
 					MapsInitializer.initialize(this);
 					Log.e("GeoTager", "Initialized");
 					mMap.setMyLocationEnabled(true);
-					Location l=mMap.getMyLocation();
-					LatLng current=new LatLng(l.getLatitude(), l.getLongitude());
-					CameraUpdate center= CameraUpdateFactory.newLatLng(current);
-					CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
+					Location l = mMap.getMyLocation();
+					LatLng current = new LatLng(l.getLatitude(),
+							l.getLongitude());
+					CameraUpdate center = CameraUpdateFactory
+							.newLatLng(current);
+					CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
 					mMap.addMarker(new MarkerOptions()
-					.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-					.position(current)
-							);
+							.icon(BitmapDescriptorFactory
+									.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+							.position(current));
 					mMap.moveCamera(center);
 					mMap.animateCamera(zoom);
-					
-					//setUpMap();
+
+					// setUpMap();
 				} catch (GooglePlayServicesNotAvailableException e) {
 					Log.e("GeoTager", e.toString());
 				}
