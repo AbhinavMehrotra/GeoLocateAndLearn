@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 
@@ -30,8 +29,13 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
-	// This will be called when challenge image is clicked
-	public void challengeBtn(View v) {
+	/**
+	 * This will be called when practice challenges image is clicked
+	 * 
+	 * @param v
+	 */
+	public void practiceChallengesButton(View v) {
+		// TODO
 		intent = new Intent(this, ChallengeActivity.class);
 		startActivity(intent);
 	}

@@ -1,13 +1,10 @@
 package com.geolocateandlearn;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
 public class MeActivity extends Activity {
-
-	private Intent intent;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
