@@ -39,7 +39,7 @@ public class SubmitChallengeResponseActivity extends Activity {
 	public void sendResponseViaEmail(View v) {
 		final Intent sendEmailIntent = new Intent(Intent.ACTION_SEND);
 		sendEmailIntent.setType("message/rfc822");
-		String emailRecipient = "schwartz@alum.mit.edu";
+		String emailRecipient = "dummy_address@pearson.com";
 		sendEmailIntent.putExtra(Intent.EXTRA_EMAIL,
 				new String[] { emailRecipient });
 		String emailSubject = "Dummy challenge response";
