@@ -14,8 +14,13 @@ public class PracticeChallenge implements Challenge {
 	}
 
 	public CharSequence getName() {
-		// TODO fix dummy value
-		return name + Long.toString(id);
+		return name;
+	}
+
+	@Override
+	public String toString() {
+		// TODO improve toString()
+		return name + " -- " + Long.toString(id);
 	}
 
 }
