@@ -32,32 +32,38 @@ public class InMemoryChallengeDatabase extends ChallengeDatabase {
 	 * Blocked constructor.
 	 */
 	private InMemoryChallengeDatabase() {
-		createPracticeChallenge("Talk to a stall keeper/seller", LISTENING,
-				SPEAKING, READING, WRITING);
+		final String[] question = new String[3];
+		//
+		question[0] = "Ask stall keeper about their stall, e.g. \"When did you set up this stall? Do you have a particular interest in {items}?\"";
+		question[1] = "Ask stall keeper about an item that is not listed, e.g. \"I know it is not listed here, but do you sell {item name}? Do you know where I could buy it?\"";
+		question[2] = "Ask stall keeper whether they would recommend an item, e.g. \"Is there anything that you would recommend me trying?\"";
+		createPracticeChallenge("Talk to a stall keeper/seller", question,
+				LISTENING, SPEAKING, READING, WRITING);
+		//
 		createPracticeChallenge("Update your blog in 150 words or less",
-				READING, WRITING);
-		createPracticeChallenge("Ask for directions", LISTENING, SPEAKING,
-				READING);
-		createPracticeChallenge("Buy a train ticket", LISTENING, SPEAKING,
-				READING);
-		createPracticeChallenge("Reserve a hotel room", LISTENING, SPEAKING,
-				WRITING);
-		createPracticeChallenge("Book a taxi over the telephone", LISTENING,
+				question, READING, WRITING);
+		createPracticeChallenge("Ask for directions", question, LISTENING,
 				SPEAKING, READING);
-		createPracticeChallenge("Order a meal in a restaurant", LISTENING,
+		createPracticeChallenge("Buy a train ticket", question, LISTENING,
 				SPEAKING, READING);
-		createPracticeChallenge("Buy tickets in a cinema to watch a film",
+		createPracticeChallenge("Reserve a hotel room", question, LISTENING,
+				SPEAKING, WRITING);
+		createPracticeChallenge("Book a taxi over the telephone", question,
 				LISTENING, SPEAKING, READING);
-		createPracticeChallenge("Ask for information at a library", LISTENING,
-				SPEAKING, READING);
-		createPracticeChallenge("Making small talk with a stranger", LISTENING,
-				SPEAKING);
+		createPracticeChallenge("Order a meal in a restaurant", question,
+				LISTENING, SPEAKING, READING);
+		createPracticeChallenge("Buy tickets in a cinema to watch a film",
+				question, LISTENING, SPEAKING, READING);
+		createPracticeChallenge("Ask for information at a library", question,
+				LISTENING, SPEAKING, READING);
+		createPracticeChallenge("Making small talk with a stranger", question,
+				LISTENING, SPEAKING);
 	}
 
 	private void createPracticeChallenge(String challengeName,
-			CommunicationsSkill... skills) {
+			String[] question, CommunicationsSkill... skills) {
 		final PracticeChallenge newChallenge = new PracticeChallenge(
-				challengeName);
+				challengeName, question[0], question[1], question[2]);
 		for (CommunicationsSkill skill : skills) {
 			switch (skill) {
 			case LISTENING:
