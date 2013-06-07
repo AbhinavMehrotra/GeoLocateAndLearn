@@ -8,7 +8,7 @@
         style="@style/formQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Take pictures, or record some key phrases" />
+        android:text="@string/take_pictures_or_record_some_key_phrases" />
 
     <TextView
         android:layout_width="match_parent"
@@ -24,18 +24,63 @@
         style="@style/formQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rate this challenge" />
+        android:text="@string/rate_this_challenge" />
 
-    <TextView
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ratings" />
+        android:layout_height="wrap_content" >
+
+        <TableRow>
+
+            <TextView
+                style="@style/ratingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fun" />
+
+            <RatingBar
+                android:id="@+id/rating_fun"
+                style="@style/challengeRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                style="@style/ratingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/education_value" />
+
+            <RatingBar
+                android:id="@+id/rating_education_value"
+                style="@style/challengeRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                style="@style/ratingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/difficulty" />
+
+            <RatingBar
+                android:id="@+id/rating_difficulty"
+                style="@style/challengeRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+    </TableLayout>
 
     <TextView
         style="@style/formQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Share this challenge" />
+        android:text="@string/share_this_challenge" />
 
     <TextView
         android:layout_width="match_parent"

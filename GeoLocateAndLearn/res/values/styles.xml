@@ -16,4 +16,16 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="challengeRating">
+        <item name="android:isIndicator">false</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">1</item>
+    </style>
+
+    <style name="ratingLabel">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
 </resources>

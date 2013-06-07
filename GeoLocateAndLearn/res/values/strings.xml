@@ -34,5 +34,11 @@
     <string name="perform_practice_challenge">Perform Practice Challenge</string>
     <string name="submit">Submit</string>
     <string name="submit_challenge_response">Submit Challenge Response</string>
+    <string name="share_this_challenge">Share this challenge</string>
+    <string name="take_pictures_or_record_some_key_phrases">Take pictures, or record some key phrases</string>
+    <string name="rate_this_challenge">Rate this challenge</string>
+    <string name="fun">Fun</string>
+    <string name="education_value">Education value</string>
+    <string name="difficulty">Difficulty</string>
 
 </resources>
