@@ -82,9 +82,11 @@
         android:layout_height="wrap_content"
         android:text="@string/share_this_challenge" />
 
-    <TextView
-        android:layout_width="match_parent"
+    <ImageButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Share options" />
+        android:layout_gravity="center_horizontal"
+        android:onClick="sendResponseViaEmail"
+        android:src="@drawable/ic_send_email" />
 
 </LinearLayout>
