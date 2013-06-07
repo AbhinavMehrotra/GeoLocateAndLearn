@@ -1,6 +1,9 @@
 package com.geolocateandlearn.model;
 
-public class PracticeChallenge implements Challenge {
+import java.io.Serializable;
+
+public class PracticeChallenge implements Challenge, Serializable {
+	private static final long serialVersionUID = 1L;
 	private final long id;
 	private final String name;
 

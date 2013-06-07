@@ -39,10 +39,9 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
-	// This will be called when nearby image is clicked
-	public void nearbyBtn(View v) {
-		intent = new Intent(this, NearbyActivity.class);
-		startActivity(intent);
+	public void nearbyButton(View v) {
+		final Intent nearbyIntent = new Intent(this, NearbyActivity.class);
+		startActivity(nearbyIntent);
 	}
 
 	// This will be called when me image is clicked

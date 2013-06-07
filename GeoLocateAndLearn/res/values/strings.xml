@@ -31,5 +31,6 @@
     <string name="reset_skills">Reset Skills</string>
     <string name="practice_challenges">Practice Challenges</string>
     <string name="practice_challenges_instructions">1. Select the skills you\&apos;d like to practice.\n2. Choose a challenge to complete together.</string>
+    <string name="perform_practice_challenge">Perform Practice Challenge</string>
 
 </resources>

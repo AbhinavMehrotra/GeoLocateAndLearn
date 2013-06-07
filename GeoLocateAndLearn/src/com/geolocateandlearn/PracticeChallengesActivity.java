@@ -3,6 +3,7 @@ package com.geolocateandlearn;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 import com.geolocateandlearn.data.ChallengeDatabase;
 import com.geolocateandlearn.data.PracticeChallengeQuery;
 import com.geolocateandlearn.model.Challenge;
+import com.geolocateandlearn.model.PracticeChallenge;
 
 public class PracticeChallengesActivity extends ListActivity {
 
@@ -26,17 +28,7 @@ public class PracticeChallengesActivity extends ListActivity {
 	private CheckBox skillReadingCheckbox;
 	private CheckBox skillWritingCheckbox;
 
-	// private final List<Challenge> selectedChallengesList = new
-	// ArrayList<Challenge>();
-
 	private ArrayAdapter<Challenge> selectedChallengesAdapter;
-
-	// private final ChallengeListAdapter selectedChallengeListAdapter = new
-	// ChallengeListAdapter(
-	// null, selectedChallengesList);
-	// private final DataSetObserver MyChallengeListObserver = new
-	// DataSetObserver() {
-	// };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,10 +44,17 @@ public class PracticeChallengesActivity extends ListActivity {
 		listView.setTextFilterEnabled(true);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				// TODO respond to click on a challenge
-
+			public void onItemClick(AdapterView<?> parentView,
+					View clickedView, int clickedPosition, long clickedId) {
+				final PracticeChallenge selectedChallenge = (PracticeChallenge) selectedChallengesAdapter
+						.getItem(clickedPosition);
+				final Intent challengeIntent = new Intent(
+						PracticeChallengesActivity.this,
+						PerformPracticeChallengeActivity.class);
+				challengeIntent.putExtra(
+						PerformPracticeChallengeActivity.EXTRA_CHALLENGE,
+						selectedChallenge);
+				startActivity(challengeIntent);
 			}
 		});
 	}
@@ -64,18 +63,6 @@ public class PracticeChallengesActivity extends ListActivity {
 		selectedChallengesAdapter = new ArrayAdapter<Challenge>(this,
 				R.layout.list_challenge);
 		setListAdapter(selectedChallengesAdapter);
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		// selectedChallengeListAdapter.registerDataSetObserver(this);
-	}
-
-	@Override
-	protected void onPause() {
-		// selectedChallengeListAdapter.unregisterDataSetObserver(this);
-		super.onPause();
 	}
 
 	private void initSkillCheckboxes() {

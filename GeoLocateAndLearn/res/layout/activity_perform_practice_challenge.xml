@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        style="@style/formText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skill icons" />
+
+    <TextView
+        android:id="@+id/challengeName"
+        style="@style/formTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Challenge name" />
+
+    <TextView
+        android:id="@+id/question1"
+        style="@style/formQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Question 1" />
+
+    <EditText
+        android:id="@+id/answer1"
+        style="@style/formText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answer 1" />
+
+    <TextView
+        android:id="@+id/question2"
+        style="@style/formQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Question 2" />
+
+    <EditText
+        android:id="@+id/answer2"
+        style="@style/formText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answer 2" />
+
+    <TextView
+        android:id="@+id/question3"
+        style="@style/formQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Question 3" />
+
+    <EditText
+        android:id="@+id/answer3"
+        style="@style/formText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answer 3" />
+
+</LinearLayout>
