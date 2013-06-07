@@ -31,6 +31,7 @@ public class InMemoryChallengeDatabase extends ChallengeDatabase {
 	 */
 	private InMemoryChallengeDatabase() {
 		createTalkToAStallSeller();
+		createUpdateYourBlog();
 	}
 
 	private void createTalkToAStallSeller() {
@@ -38,6 +39,15 @@ public class InMemoryChallengeDatabase extends ChallengeDatabase {
 				"Talk to a stall keeper/seller");
 		listeningChallenges.add(newChallenge);
 		speakingChallenges.add(newChallenge);
+		readingChallenges.add(newChallenge);
+		writingChallenges.add(newChallenge);
+	}
+
+	private void createUpdateYourBlog() {
+		final PracticeChallenge newChallenge = new PracticeChallenge(
+				"Update your blog in 150 words or less");
+		// listeningChallenges.add(newChallenge);
+		// speakingChallenges.add(newChallenge);
 		readingChallenges.add(newChallenge);
 		writingChallenges.add(newChallenge);
 	}
