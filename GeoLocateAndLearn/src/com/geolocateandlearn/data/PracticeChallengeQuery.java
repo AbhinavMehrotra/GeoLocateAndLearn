@@ -26,4 +26,20 @@ public class PracticeChallengeQuery implements ChallengeQuery {
 		requireWriting = newValue;
 	}
 
+	public boolean listeningIsRequired() {
+		return requireListening;
+	}
+
+	public boolean speakingIsRequired() {
+		return requireSpeaking;
+	}
+
+	public boolean readingIsRequired() {
+		return requireReading;
+	}
+
+	public boolean writingIsRequired() {
+		return requireWriting;
+	}
+
 }

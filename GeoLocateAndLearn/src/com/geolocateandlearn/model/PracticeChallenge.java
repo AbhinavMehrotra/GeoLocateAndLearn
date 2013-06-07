@@ -19,7 +19,7 @@ public class PracticeChallenge implements Challenge {
 
 	@Override
 	public String toString() {
-		// TODO improve toString()
+		// TODO improve PracticeChallenge toString()
 		return name + " -- " + Long.toString(id);
 	}
 
