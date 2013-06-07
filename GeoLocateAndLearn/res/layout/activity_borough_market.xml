@@ -1,10 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-
-
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <ImageView
         android:id="@+id/imageViewPOI"
@@ -12,29 +10,27 @@
         android:layout_height="200dp"
         android:src="@drawable/borough" />
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:onClick="boroughAbout"
-        android:setClickable="true"
-        android:text="About"
-        android:textSize="30dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_sort_alphabetically" />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="boroughAbout"
+            android:text="About"
+            android:textSize="30dp" />
 
-</LinearLayout>
-
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_sort_alphabetically" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -52,8 +48,8 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-	android:setClickable="true"
-	android:onClick="boroughAbout"
+        android:clickable="true"
+        android:onClick="boroughAbout"
         android:text="Speak to a stall-holder" />
 
 </LinearLayout>
