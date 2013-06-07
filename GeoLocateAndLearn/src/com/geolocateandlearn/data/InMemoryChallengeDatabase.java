@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import com.geolocateandlearn.model.Challenge;
+import com.geolocateandlearn.model.CommunicationsSkill;
 import com.geolocateandlearn.model.PracticeChallenge;
+import static com.geolocateandlearn.model.CommunicationsSkill.*;
 
 /**
  * Singleton.
@@ -32,6 +34,35 @@ public class InMemoryChallengeDatabase extends ChallengeDatabase {
 	private InMemoryChallengeDatabase() {
 		createTalkToAStallSeller();
 		createUpdateYourBlog();
+
+		createPracticeChallenge("Ask for directions", LISTENING, SPEAKING,
+				READING);
+		createPracticeChallenge("Buy a train ticket", LISTENING, SPEAKING,
+				READING);
+	}
+
+	private void createPracticeChallenge(String challengeName,
+			CommunicationsSkill... skills) {
+		final PracticeChallenge newChallenge = new PracticeChallenge(
+				challengeName);
+		for (CommunicationsSkill skill : skills) {
+			switch (skill) {
+			case LISTENING:
+				listeningChallenges.add(newChallenge);
+				break;
+			case SPEAKING:
+				speakingChallenges.add(newChallenge);
+				break;
+			case READING:
+				readingChallenges.add(newChallenge);
+				break;
+			case WRITING:
+				writingChallenges.add(newChallenge);
+				break;
+			default:
+				throw new IllegalArgumentException("Unknown skill: " + skill);
+			}
+		}
 	}
 
 	private void createTalkToAStallSeller() {
