@@ -40,22 +40,57 @@ public class InMemoryChallengeDatabase extends ChallengeDatabase {
 		createPracticeChallenge("Talk to a stall keeper/seller", question,
 				LISTENING, SPEAKING, READING, WRITING);
 		//
+		question[0] = "Describe what you saw/who you met";
+		question[1] = "Why did you find it interesting?";
+		question[2] = "Would you recommend other people to visit it and if yes, why?";
 		createPracticeChallenge("Update your blog in 150 words or less",
 				question, READING, WRITING);
+		//
+		question[0] = "Ask for directions, e.g. \"Excuse me, I'm trying to get to {insert POI}. Could you please tell me how to walk there?\"";
+		question[1] = "Ask about the amount of time it would take to get there, e.g. \"How long would it take approximately?\"";
+		question[2] = "Ask about other means of travelling to your desired location. e.g. \"Could I take public transport instead?\"";
 		createPracticeChallenge("Ask for directions", question, LISTENING,
 				SPEAKING, READING);
+		//
+		question[0] = "Buy a ticket, e.g. \"Could I buy a ticket to {city name} please?\"";
+		question[1] = "Ask about different ticket prices, e.g. \"How much does that cost for a single and return ticket?\"";
+		question[2] = "Find out about the journey, e.g. \"What platform does it leave from? What time is the next train? How long does the journey take?\"";
 		createPracticeChallenge("Buy a train ticket", question, LISTENING,
 				SPEAKING, READING);
+		//
+		question[0] = "Ask if a room is available, e.g. \"Could I please book a double room for {date} for {number of days}?\"";
+		question[1] = "Ask for the types of rooms and packages that they offer, e.g. \"Are the rooms ensuite? Is breakfast included? Can I use the hotel's facilities?\"";
+		question[2] = "Ask for the check-in and check-out times, e.g. \"What time can I check-in from? What is the latest time I can check-out?\"";
 		createPracticeChallenge("Reserve a hotel room", question, LISTENING,
 				SPEAKING, WRITING);
+		//
+		question[0] = "TEXT";
+		question[1] = "TEXT";
+		question[2] = "TEXT";
 		createPracticeChallenge("Book a taxi over the telephone", question,
 				LISTENING, SPEAKING, READING);
+		//
+		question[0] = "TEXT";
+		question[1] = "TEXT";
+		question[2] = "TEXT";
 		createPracticeChallenge("Order a meal in a restaurant", question,
 				LISTENING, SPEAKING, READING);
+		//
+		question[0] = "TEXT";
+		question[1] = "TEXT";
+		question[2] = "TEXT";
 		createPracticeChallenge("Buy tickets in a cinema to watch a film",
 				question, LISTENING, SPEAKING, READING);
+		//
+		question[0] = "TEXT";
+		question[1] = "TEXT";
+		question[2] = "TEXT";
 		createPracticeChallenge("Ask for information at a library", question,
 				LISTENING, SPEAKING, READING);
+		//
+		question[0] = "TEXT";
+		question[1] = "TEXT";
+		question[2] = "TEXT";
 		createPracticeChallenge("Making small talk with a stranger", question,
 				LISTENING, SPEAKING);
 	}
