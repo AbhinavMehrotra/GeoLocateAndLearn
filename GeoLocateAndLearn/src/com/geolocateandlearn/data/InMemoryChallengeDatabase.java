@@ -32,13 +32,26 @@ public class InMemoryChallengeDatabase extends ChallengeDatabase {
 	 * Blocked constructor.
 	 */
 	private InMemoryChallengeDatabase() {
-		createTalkToAStallSeller();
-		createUpdateYourBlog();
-
+		createPracticeChallenge("Talk to a stall keeper/seller", LISTENING,
+				SPEAKING, READING, WRITING);
+		createPracticeChallenge("Update your blog in 150 words or less",
+				READING, WRITING);
 		createPracticeChallenge("Ask for directions", LISTENING, SPEAKING,
 				READING);
 		createPracticeChallenge("Buy a train ticket", LISTENING, SPEAKING,
 				READING);
+		createPracticeChallenge("Reserve a hotel room", LISTENING, SPEAKING,
+				WRITING);
+		createPracticeChallenge("Book a taxi over the telephone", LISTENING,
+				SPEAKING, READING);
+		createPracticeChallenge("Order a meal in a restaurant", LISTENING,
+				SPEAKING, READING);
+		createPracticeChallenge("Buy tickets in a cinema to watch a film",
+				LISTENING, SPEAKING, READING);
+		createPracticeChallenge("Ask for information at a library", LISTENING,
+				SPEAKING, READING);
+		createPracticeChallenge("Making small talk with a stranger", LISTENING,
+				SPEAKING);
 	}
 
 	private void createPracticeChallenge(String challengeName,
@@ -63,24 +76,6 @@ public class InMemoryChallengeDatabase extends ChallengeDatabase {
 				throw new IllegalArgumentException("Unknown skill: " + skill);
 			}
 		}
-	}
-
-	private void createTalkToAStallSeller() {
-		final PracticeChallenge newChallenge = new PracticeChallenge(
-				"Talk to a stall keeper/seller");
-		listeningChallenges.add(newChallenge);
-		speakingChallenges.add(newChallenge);
-		readingChallenges.add(newChallenge);
-		writingChallenges.add(newChallenge);
-	}
-
-	private void createUpdateYourBlog() {
-		final PracticeChallenge newChallenge = new PracticeChallenge(
-				"Update your blog in 150 words or less");
-		// listeningChallenges.add(newChallenge);
-		// speakingChallenges.add(newChallenge);
-		readingChallenges.add(newChallenge);
-		writingChallenges.add(newChallenge);
 	}
 
 	public List<Challenge> query(ChallengeQuery myQuery) {
