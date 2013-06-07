@@ -23,6 +23,19 @@ public class SubmitChallengeResponseActivity extends Activity {
 		setTitle(response.getChallenge().getName());
 	}
 
+	/*
+	 * TODO Implement photography
+	 */
+
+	/*
+	 * TODO Implement audio recording
+	 */
+
+	/**
+	 * TODO populate response message with actual data
+	 * 
+	 * @param v
+	 */
 	public void sendResponseViaEmail(View v) {
 		final Intent sendEmailIntent = new Intent(Intent.ACTION_SEND);
 		sendEmailIntent.setType("message/rfc822");
@@ -34,7 +47,8 @@ public class SubmitChallengeResponseActivity extends Activity {
 		String emailText = "body of email";
 		sendEmailIntent.putExtra(Intent.EXTRA_TEXT, emailText);
 		try {
-			startActivity(Intent.createChooser(sendEmailIntent, "Send mail..."));
+			startActivity(Intent.createChooser(sendEmailIntent,
+					"Send results..."));
 		} catch (android.content.ActivityNotFoundException ex) {
 			Toast.makeText(this, "There are no email clients installed.",
 					Toast.LENGTH_LONG).show();
