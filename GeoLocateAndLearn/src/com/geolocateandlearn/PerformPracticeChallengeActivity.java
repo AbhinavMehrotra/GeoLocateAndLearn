@@ -43,6 +43,7 @@ public class PerformPracticeChallengeActivity extends Activity {
 
 		final Intent submitIntent = new Intent(this,
 				SubmitChallengeResponseActivity.class);
+		submitIntent.putExtra(SubmitChallengeResponseActivity.EXTRA_RESPONSE, response);
 		startActivity(submitIntent);
 	}
 }

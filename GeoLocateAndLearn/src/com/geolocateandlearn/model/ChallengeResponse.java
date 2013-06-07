@@ -1,6 +1,9 @@
 package com.geolocateandlearn.model;
 
-public class ChallengeResponse {
+import java.io.Serializable;
+
+public class ChallengeResponse implements Serializable {
+	private static final long serialVersionUID = 1L;
 	final private Challenge originalChallenge;
 	final private String[] answer = new String[3];
 
@@ -16,7 +19,14 @@ public class ChallengeResponse {
 	 *            String
 	 */
 	public void setAnswer(int answerNumber, String answerText) {
-		// TODO Auto-generated method stub
 		answer[answerNumber - 1] = answerText;
+	}
+
+	public Challenge getChallenge() {
+		return originalChallenge;
+	}
+
+	public String getAnswer(int which) {
+		return answer[which - 1];
 	}
 }
