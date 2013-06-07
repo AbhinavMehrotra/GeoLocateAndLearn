@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class NearbyActivity extends FragmentActivity {
 
+	public static final String EXTRA_MESSAGE = "com.geolocateandlearn.NearbyActivity";
 	private GoogleMap mMap;
 	private LocationManager lm;
 	private LocationListener ll;
@@ -93,8 +94,8 @@ public class NearbyActivity extends FragmentActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		String provider = lm.getBestProvider(new Criteria(), true);
-		lm.requestLocationUpdates(provider, 10000, 0, ll);
+//		String provider = lm.getBestProvider(new Criteria(), true);
+//		lm.requestLocationUpdates(provider, 10000, 0, ll);
 	}
 
 	private void setUpMapIfNeeded(Location loc) {
@@ -162,7 +163,15 @@ public class NearbyActivity extends FragmentActivity {
 				t.setOnClickListener((new View.OnClickListener() {                        
 					public void onClick(View v) {
 						Intent intent=new Intent(NearbyActivity.this, BoroughMarketActivity.class);
-						intent.putExtra("city", s);
+						intent.putExtra(EXTRA_MESSAGE, s);
+						startActivity(intent);
+					}
+				}));
+				iv.setClickable(true);
+				iv.setOnClickListener((new View.OnClickListener() {                        
+					public void onClick(View v) {
+						Intent intent=new Intent(NearbyActivity.this, BoroughMarketCompassActivity.class);
+						intent.putExtra(EXTRA_MESSAGE, s);
 						startActivity(intent);
 					}
 				}));
