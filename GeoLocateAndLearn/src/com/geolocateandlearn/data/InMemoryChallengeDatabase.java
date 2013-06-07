@@ -63,7 +63,8 @@ public class InMemoryChallengeDatabase extends ChallengeDatabase {
 		question[2] = "Ask for the check-in and check-out times, e.g. \"What time can I check-in from? What is the latest time I can check-out?\"";
 		createPracticeChallenge("Reserve a hotel room", question, LISTENING,
 				SPEAKING, WRITING);
-		//
+		// 
+		// TODO Enter remaining prompts
 		question[0] = "TEXT";
 		question[1] = "TEXT";
 		question[2] = "TEXT";
