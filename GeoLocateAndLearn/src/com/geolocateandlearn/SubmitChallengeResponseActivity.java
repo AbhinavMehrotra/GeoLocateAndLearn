@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 public class SubmitChallengeResponseActivity extends Activity {
@@ -54,21 +55,36 @@ public class SubmitChallengeResponseActivity extends Activity {
 	}
 
 	private void setResponseAttachments(Intent sendEmailIntent) {
-		// TODO Auto-generated method stub
+		// TODO add photograph
+
+		// TODO add audio recording
 
 	}
 
 	private void setResponseText(final Intent sendEmailIntent) {
-		// TODO
-		String emailText = "body of email";
-		sendEmailIntent.putExtra(Intent.EXTRA_TEXT, emailText);
+		final RatingBar ratingFun = (RatingBar) findViewById(R.id.rating_fun);
+		final RatingBar ratingEducationValue = (RatingBar) findViewById(R.id.rating_education_value);
+		final RatingBar ratingDifficulty = (RatingBar) findViewById(R.id.rating_difficulty);
+
+		final StringBuilder emailText = new StringBuilder("<Answer1>");
+		emailText.append(response.getAnswer(1));
+		emailText.append("</Answer1>\n<Answer2>");
+		emailText.append(response.getAnswer(2));
+		emailText.append("</Answer2>\n<Answer3>");
+		emailText.append(response.getAnswer(3));
+		emailText.append("</Answer3>\n<StarsFun>");
+		emailText.append(ratingFun.getRating());
+		emailText.append("</StarsFun>\n<StarsEducationValue>");
+		emailText.append(ratingEducationValue.getRating());
+		emailText.append("</StarsEducationValue>\n<StarsDifficulty>");
+		emailText.append(ratingDifficulty.getRating());
+		emailText.append("</StarsDifficulty>");
+		sendEmailIntent.putExtra(Intent.EXTRA_TEXT, emailText.toString());
 	}
 
 	private void setResponseSubject(final Intent sendEmailIntent) {
 		final StringBuilder emailSubject = new StringBuilder(
 				"Challenge response - ");
-		final ChallengeResponse response = (ChallengeResponse) getIntent()
-				.getSerializableExtra(EXTRA_RESPONSE);
 		emailSubject.append(response.getChallenge().getName());
 		sendEmailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject.toString());
 	}
