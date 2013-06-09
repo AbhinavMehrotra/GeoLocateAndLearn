@@ -10,7 +10,7 @@ import android.preference.PreferenceManager;
  * 
  */
 public class AppPreferences {
-	private static final String NO_EMAIL_ADDRESS = "";
+	private static final String NO_EMAIL_ADDRESS = "NO_EMAIL_ADDRESS_STORED@NOMAIL.COM";
 	private static final String KEY_EMAIL_ADDRESS = "emailAddress";
 	private static final AppPreferences instance = new AppPreferences();
 
