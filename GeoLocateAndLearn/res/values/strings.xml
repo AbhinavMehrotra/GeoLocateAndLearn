@@ -40,5 +40,9 @@
     <string name="fun">Fun</string>
     <string name="education_value">Education value</string>
     <string name="difficulty">Difficulty</string>
+    <string name="nearby">Nearby</string>
+    <string name="practice">Practice</string>
+    <string name="about">About</string>
+    <string name="me">Me</string>
 
 </resources>

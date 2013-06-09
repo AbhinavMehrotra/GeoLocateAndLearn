@@ -1,47 +1,64 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:columnCount="2"
     android:orientation="vertical"
-    android:paddingTop="10dp" >
+    android:paddingTop="10dp"
+    android:rowCount="2"
+    android:stretchColumns="*" >
 
-    <ImageView
-        android:id="@+id/nearby"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="nearbyButton"
-        android:padding="5dp"
-        android:src="@drawable/ic_nearby" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
 
-    <ImageView
-        android:id="@+id/practice_challenges"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/nearby"
-        android:layout_toRightOf="@id/nearby"
-        android:cropToPadding="false"
-        android:onClick="practiceChallengesButton"
-        android:padding="5dp"
-        android:src="@drawable/ic_practice_active" />
+        <ImageView
+            android:id="@+id/nearby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/nearby"
+            android:onClick="nearbyButton"
+            android:padding="5dp"
+            android:src="@drawable/ic_nearby" />
 
-    <ImageView
-        android:id="@+id/about"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/nearby"
-        android:layout_below="@id/nearby"
-        android:onClick="aboutBtn"
-        android:padding="5dp"
-        android:src="@drawable/ic_about" />
+        <ImageView
+            android:id="@+id/practice_challenges"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/practice"
+            android:cropToPadding="false"
+            android:onClick="practiceChallengesButton"
+            android:padding="5dp"
+            android:src="@drawable/ic_practice_active" />
+    </TableRow>
 
-    <ImageView
-        android:id="@+id/me"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/about"
-        android:layout_alignLeft="@id/practice_challenges"
-        android:onClick="meBtn"
-        android:padding="5dp"
-        android:src="@drawable/ic_me" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/about"
+            android:onClick="aboutBtn"
+            android:padding="5dp"
+            android:src="@drawable/ic_about" />
+
+        <ImageView
+            android:id="@+id/me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/me"
+            android:onClick="meBtn"
+            android:padding="5dp"
+            android:src="@drawable/ic_me" />
+    </TableRow>
+
+</TableLayout>
