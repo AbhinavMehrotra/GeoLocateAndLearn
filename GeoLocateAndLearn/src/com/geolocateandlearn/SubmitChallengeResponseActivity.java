@@ -1,5 +1,6 @@
 package com.geolocateandlearn;
 
+import com.geolocateandlearn.data.AppPreferences;
 import com.geolocateandlearn.model.ChallengeResponse;
 
 import android.app.Activity;
@@ -39,13 +40,10 @@ public class SubmitChallengeResponseActivity extends Activity {
 	public void sendResponseViaEmail(View v) {
 		final Intent sendEmailIntent = new Intent(Intent.ACTION_SEND);
 		sendEmailIntent.setType("message/rfc822");
-		String emailRecipient = "dummy_address@pearson.com";
-		sendEmailIntent.putExtra(Intent.EXTRA_EMAIL,
-				new String[] { emailRecipient });
-		String emailSubject = "Dummy challenge response";
-		sendEmailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
-		String emailText = "body of email";
-		sendEmailIntent.putExtra(Intent.EXTRA_TEXT, emailText);
+		setResponseRecipient(sendEmailIntent);
+		setResponseSubject(sendEmailIntent);
+		setResponseText(sendEmailIntent);
+		setResponseAttachments(sendEmailIntent);
 		try {
 			startActivity(Intent.createChooser(sendEmailIntent,
 					"Send results..."));
@@ -53,5 +51,32 @@ public class SubmitChallengeResponseActivity extends Activity {
 			Toast.makeText(this, "There are no email clients installed.",
 					Toast.LENGTH_LONG).show();
 		}
+	}
+
+	private void setResponseAttachments(Intent sendEmailIntent) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void setResponseText(final Intent sendEmailIntent) {
+		// TODO
+		String emailText = "body of email";
+		sendEmailIntent.putExtra(Intent.EXTRA_TEXT, emailText);
+	}
+
+	private void setResponseSubject(final Intent sendEmailIntent) {
+		final StringBuilder emailSubject = new StringBuilder(
+				"Challenge response - ");
+		final ChallengeResponse response = (ChallengeResponse) getIntent()
+				.getSerializableExtra(EXTRA_RESPONSE);
+		emailSubject.append(response.getChallenge().getName());
+		sendEmailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject.toString());
+	}
+
+	private void setResponseRecipient(final Intent sendEmailIntent) {
+		final String emailRecipient = AppPreferences.getInstance()
+				.getEmailAddress(this);
+		sendEmailIntent.putExtra(Intent.EXTRA_EMAIL,
+				new String[] { emailRecipient });
 	}
 }
