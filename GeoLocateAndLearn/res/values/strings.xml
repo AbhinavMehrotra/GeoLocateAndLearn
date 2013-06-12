@@ -44,5 +44,9 @@
     <string name="practice">Practice</string>
     <string name="about">About</string>
     <string name="me">Me</string>
+    <string name="credits">Credits</string>
+    <string name="project_team">Project Team</string>
+    <string name="project_team_names">Abhinav Mehrotra\nAdam Webb\nDean Kitchen\nJacqueline Cheng\nNathan Harris\nSteven Schwartz</string>
+    <string name="ok">OK</string>
 
 </resources>
