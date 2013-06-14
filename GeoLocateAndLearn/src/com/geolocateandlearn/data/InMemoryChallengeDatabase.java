@@ -63,35 +63,40 @@ public class InMemoryChallengeDatabase extends ChallengeDatabase {
 		question[2] = "Ask for the check-in and check-out times, e.g. \"What time can I check-in from? What is the latest time I can check-out?\"";
 		createPracticeChallenge("Reserve a hotel room", question, LISTENING,
 				SPEAKING, WRITING);
-		// 
-		// TODO Enter remaining prompts
-		question[0] = "TEXT";
-		question[1] = "TEXT";
-		question[2] = "TEXT";
+		//
+		question[0] = "Ring up a taxi company to ask about booking a taxi, e.g. \"I'd like to book a taxi from {current location} to {intended destination} please\".";
+		question[1] = "Ask for the rates, e.g. \"How much would it cost for you to take me to this destination?\"";
+		question[2] = "Ask how long it would take for the taxi driver to reach my current location and how long the journey should take to my intended destination, e.g. \"How long will it take for the taxi to arrive?\"";
 		createPracticeChallenge("Book a taxi over the telephone", question,
 				LISTENING, SPEAKING, READING);
 		//
-		question[0] = "TEXT";
-		question[1] = "TEXT";
-		question[2] = "TEXT";
+		question[0] = "Read the menu and place an order, e.g. \"Can I order {item(s)} please?\"";
+		question[1] = "Ask what drinks they have on offer, e.g. \"What fizzy drinks do you have?\"";
+		question[2] = "Ask what specials they have on offer e.g. \"What specials do you have on offer today?\"";
 		createPracticeChallenge("Order a meal in a restaurant", question,
 				LISTENING, SPEAKING, READING);
 		//
-		question[0] = "TEXT";
-		question[1] = "TEXT";
-		question[2] = "TEXT";
+		// instructions =
+		// "Decide who will be the ticket-seller at the cinema and who will be the cinema-goer. The ticket-seller should write down a list of 5 films and times they are showing. Swap roles and practice this a few times.";
+		question[0] = "Buy cinema tickets for the film you want to watch, e.g. \"I'd like {number of tickets} for {name of film} please.\"";
+		question[1] = "Ask how much they cost and whether there are concessions for students, e.g. \"How much is one ticket? Do students receive a discount?\"";
+		question[2] = "Buy some snacks, e.g. \"Where can I buy some popcorn?\"";
 		createPracticeChallenge("Buy tickets in a cinema to watch a film",
 				question, LISTENING, SPEAKING, READING);
 		//
-		question[0] = "TEXT";
-		question[1] = "TEXT";
-		question[2] = "TEXT";
+		// instructions =
+		// "Decide who will be the librarian or who will be the customer. The librarian should write down a list of 10 books they have in stock. Swap roles and practice this a few times.";
+		question[0] = "Enquire about a specific book, e.g. \"Do you have {book} in stock?\"";
+		question[1] = "Ask what book the librarian would recommend, e.g. \"Which book would you recommend?\"";
+		question[2] = "Ask what genre the libarian would recommend,e.g. \"Which genre would you recommend?\"";
 		createPracticeChallenge("Ask for information at a library", question,
 				LISTENING, SPEAKING, READING);
 		//
-		question[0] = "TEXT";
-		question[1] = "TEXT";
-		question[2] = "TEXT";
+		// instructions =
+		// "Decide who will be person A and who will be person B. Person A should attempt to initiate a conversation with person B. Swap roles and practice this a few times.";
+		question[0] = "Ask how person B is doing, e.g. \"How are you today?\"";
+		question[1] = "Make general comments about the environment around you, e..g the weather, traffic conditions, etc., e.g. \"It is very sunny today! Pity the traffic is so bad.\"";
+		question[2] = "Ask about person B's day, e.g. \"How is your day so far? Are you doing anything interesting today?\"";
 		createPracticeChallenge("Making small talk with a stranger", question,
 				LISTENING, SPEAKING);
 	}
