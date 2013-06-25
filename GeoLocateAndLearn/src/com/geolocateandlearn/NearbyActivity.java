@@ -11,12 +11,15 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.geolocateandlearn.model.PointOfInterest;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,54 +40,73 @@ public class NearbyActivity extends FragmentActivity {
 	private Location loc;
 	private ProgressBar pb;
 	private String city;
-	private ArrayList<String> poiLondon=new ArrayList<String>();
-	private ArrayList<String> poiNY=new ArrayList<String>();
-	private LinearLayout linear;
-	
-	
+	private ArrayList<String> poiLondon = new ArrayList<String>();
+	private ArrayList<String> poiNY = new ArrayList<String>();
+
+	private ArrayAdapter<PointOfInterest> poiAdapter;
+
+	// private LinearLayout linear;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nearby);
-		linear  = (LinearLayout)findViewById(R.id.linear);
+		final ListView poiListView = (ListView) findViewById(R.id.poi_listview);
+
+		poiAdapter = new ArrayAdapter<PointOfInterest>(this,
+				R.layout.point_of_interest);
+		poiListView.setAdapter(poiAdapter);
+		
+		poiAdapter.clear();
+		poiAdapter.add(new PointOfInterest("9/11 Exhibit"));
+		poiAdapter.add(new PointOfInterest("Fraunces Tavern"));
+		poiAdapter.add(new PointOfInterest("Skyscraper Museum"));
+
+		// TODO
+
+		// linear = (LinearLayout)findViewById(R.id.linear);
 		poiLondon.add("Borough Market");
 		poiLondon.add("Monument");
 		poiLondon.add("The George Inn");
 		poiNY.add("Trinity Church");
 		poiNY.add("Circle Line Ferries");
-		poiNY.add("Skyscraper Museum");		
-		Toast.makeText(getApplicationContext(), "Getting your location.", Toast.LENGTH_LONG).show();		
-		pb=(ProgressBar) findViewById(R.id.progressBar);
+		poiNY.add("Skyscraper Museum");
+		Toast.makeText(getApplicationContext(),
+				"Getting your location.", Toast.LENGTH_LONG).show();
+		pb = (ProgressBar) findViewById(R.id.progressBar);
 		pb.setVisibility(ProgressBar.VISIBLE);
-		
-		lm = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
-		ll= new LocationListener() {
-			
-			public void onStatusChanged(String provider, int status, Bundle extras) {
+
+		lm = (LocationManager) getApplicationContext()
+				.getSystemService(LOCATION_SERVICE);
+		ll = new LocationListener() {
+
+			public void onStatusChanged(String provider, int status,
+					Bundle extras) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			public void onProviderEnabled(String provider) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			public void onProviderDisabled(String provider) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			public void onLocationChanged(Location location) {
 				lm.removeUpdates(ll);
 				pb.setVisibility(ProgressBar.INVISIBLE);
-				loc=location;
+				loc = location;
 				setUpMapIfNeeded(loc);
-				city=getNearestCity(loc).toUpperCase();
-				Toast.makeText(getApplicationContext(), "You are near "+city, Toast.LENGTH_LONG).show();
+				city = getNearestCity(loc).toUpperCase();
+				Toast.makeText(getApplicationContext(),
+						"You are near " + city, Toast.LENGTH_LONG)
+						.show();
 				displayPOI(city);
-				
+
 			}
 		};
 		String provider = lm.getBestProvider(new Criteria(), true);
@@ -94,8 +116,8 @@ public class NearbyActivity extends FragmentActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-//		String provider = lm.getBestProvider(new Criteria(), true);
-//		lm.requestLocationUpdates(provider, 10000, 0, ll);
+		// String provider = lm.getBestProvider(new Criteria(), true);
+		// lm.requestLocationUpdates(provider, 10000, 0, ll);
 	}
 
 	private void setUpMapIfNeeded(Location loc) {
@@ -111,7 +133,7 @@ public class NearbyActivity extends FragmentActivity {
 					MapsInitializer.initialize(this);
 					Log.e("GeoTager", "Initialized");
 					mMap.setMyLocationEnabled(true);
-					//Location l = mMap.getMyLocation();
+					// Location l = mMap.getMyLocation();
 					LatLng current = new LatLng(loc.getLatitude(),
 							loc.getLongitude());
 					CameraUpdate center = CameraUpdateFactory
@@ -129,48 +151,55 @@ public class NearbyActivity extends FragmentActivity {
 			}
 		}
 	}
-	
-	private String getNearestCity(Location loc){
+
+	private String getNearestCity(Location loc) {
 		String city;
-		double londonLat=51.5171,londonLon=0.1062,nyLat=40.7142,nyLon=-74.0064,distLondon,distNY;
-		distLondon=Math.sqrt(Math.pow((londonLat-loc.getLatitude()),2)+Math.pow((londonLon-loc.getLongitude()),2));
-		distNY=Math.sqrt(Math.pow((nyLat-loc.getLatitude()),2)+Math.pow((nyLon-loc.getLongitude()),2));
-		if(distLondon>distNY)
-			city="New York";
+		double londonLat = 51.5171, londonLon = 0.1062, nyLat = 40.7142, nyLon = -74.0064, distLondon, distNY;
+		distLondon = Math.sqrt(Math.pow(
+				(londonLat - loc.getLatitude()), 2)
+				+ Math.pow((londonLon - loc.getLongitude()), 2));
+		distNY = Math.sqrt(Math.pow((nyLat - loc.getLatitude()), 2)
+				+ Math.pow((nyLon - loc.getLongitude()), 2));
+		if (distLondon > distNY)
+			city = "New York";
 		else
-			city="London";		
+			city = "London";
 		return city;
 	}
 
-	private void displayPOI(String city){
-		ArrayList<String> poiList=new ArrayList<String>();
-		
-		if(city.equalsIgnoreCase("london"))
-			poiList=poiLondon;
+	private void displayPOI(String city) {
+		ArrayList<String> poiList = new ArrayList<String>();
+
+		if (city.equalsIgnoreCase("london"))
+			poiList = poiLondon;
 		else
-			poiList=poiNY;
-		for(final String s:poiList){
-			LinearLayout l  = new LinearLayout(getApplicationContext());
+			poiList = poiNY;
+		for (final String s : poiList) {
+			LinearLayout l = new LinearLayout(getApplicationContext());
 			l.setOrientation(LinearLayout.HORIZONTAL);
-			ImageView iv=new ImageView(getApplicationContext());
-			iv.setBackgroundResource(R.drawable.ic_launcher);			
+			ImageView iv = new ImageView(getApplicationContext());
+			iv.setBackgroundResource(R.drawable.ic_launcher);
 			TextView t = new TextView(getApplicationContext());
 			t.setText(s);
 			t.setTextSize(20);
-			if(s.equalsIgnoreCase("Borough Market") || s.equalsIgnoreCase("Trinity Church")){
-				Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+			if (s.equalsIgnoreCase("Borough Market")
+					|| s.equalsIgnoreCase("Trinity Church")) {
+				Toast.makeText(getApplicationContext(), s,
+						Toast.LENGTH_LONG).show();
 				t.setClickable(true);
-				t.setOnClickListener((new View.OnClickListener() {                        
+				t.setOnClickListener((new View.OnClickListener() {
 					public void onClick(View v) {
-						Intent intent=new Intent(NearbyActivity.this, BoroughMarketActivity.class);
+						Intent intent = new Intent(NearbyActivity.this,
+								BoroughMarketActivity.class);
 						intent.putExtra(EXTRA_MESSAGE, s);
 						startActivity(intent);
 					}
 				}));
 				iv.setClickable(true);
-				iv.setOnClickListener((new View.OnClickListener() {                        
+				iv.setOnClickListener((new View.OnClickListener() {
 					public void onClick(View v) {
-						Intent intent=new Intent(NearbyActivity.this, BoroughMarketCompassActivity.class);
+						Intent intent = new Intent(NearbyActivity.this,
+								BoroughMarketCompassActivity.class);
 						intent.putExtra(EXTRA_MESSAGE, s);
 						startActivity(intent);
 					}
@@ -178,7 +207,7 @@ public class NearbyActivity extends FragmentActivity {
 			}
 			l.addView(t);
 			l.addView(iv);
-			linear.addView(l);
+			// linear.addView(l);
 		}
 	}
 }
