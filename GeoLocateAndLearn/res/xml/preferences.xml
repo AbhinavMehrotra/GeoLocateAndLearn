@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <EditTextPreference
-        android:key="nickname"
-        android:title="Nickname" />
-    <EditTextPreference
-        android:key="institution"
-        android:title="School / Institution" />
-    <EditTextPreference
-        android:key="emailAddress"
-        android:title="Email address" />
+    <PreferenceCategory android:title="Identity" >
+        <EditTextPreference
+            android:key="nickname"
+            android:title="Nickname" />
+        <EditTextPreference
+            android:key="institution"
+            android:title="School / Institution" />
+        <EditTextPreference
+            android:key="emailAddress"
+            android:title="Email address" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Geolocation" >
+        <ListPreference
+            android:defaultValue="@string/geolocation_source_values_default"
+            android:dialogTitle="What determines the &quot;current location&quot;?"
+            android:entries="@array/geolocation_source_choices"
+            android:entryValues="@array/geolocation_source_values"
+            android:key="geolocationSource"
+            android:title="Location source" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

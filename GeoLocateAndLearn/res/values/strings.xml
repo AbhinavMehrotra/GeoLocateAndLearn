@@ -49,4 +49,19 @@
     <string name="project_team_names">Abhinav Mehrotra\nAdam Webb\nDean Kitchen\nJacqueline Cheng\nNathan Harris\nSteven Schwartz</string>
     <string name="ok">OK</string>
 
+    <string-array name="geolocation_source_choices">
+        <item>Actual current location</item>
+        <item>London</item>
+        <item>New York</item>
+        <item>Sydney</item>
+    </string-array>
+    <string-array name="geolocation_source_values">
+        <item>actual</item>
+        <item>london</item>
+        <item>new_york</item>
+        <item>sydney</item>
+    </string-array>
+
+    <string name="geolocation_source_values_default">actual</string>
+
 </resources>
