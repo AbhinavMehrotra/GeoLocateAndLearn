@@ -56,14 +56,13 @@
         <item>Sydney</item>
     </string-array>
     <string-array name="geolocation_source_values">
-        <item>actual</item>
-        <item>london</item>
-        <item>new_york</item>
-        <item>sydney</item>
+        <item>ACTUAL</item>
+        <item>LONDON</item>
+        <item>NEW_YORK</item>
+        <item>SYDNEY</item>
     </string-array>
 
     <string name="geolocation_source_values_default">actual</string>
-
     <string name="nearby_points_of_interest">Nearby Points of Interest</string>
 
 </resources>

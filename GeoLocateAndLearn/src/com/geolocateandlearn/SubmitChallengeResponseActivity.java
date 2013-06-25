@@ -20,8 +20,8 @@ public class SubmitChallengeResponseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_submit_challenge_response);
-		response = (ChallengeResponse) getIntent().getSerializableExtra(
-				EXTRA_RESPONSE);
+		response = (ChallengeResponse) getIntent()
+				.getSerializableExtra(EXTRA_RESPONSE);
 		setTitle(response.getChallenge().getName());
 	}
 
@@ -34,8 +34,6 @@ public class SubmitChallengeResponseActivity extends Activity {
 	 */
 
 	/**
-	 * TODO populate response message with actual data
-	 * 
 	 * @param v
 	 */
 	public void sendResponseViaEmail(View v) {
@@ -49,7 +47,8 @@ public class SubmitChallengeResponseActivity extends Activity {
 			startActivity(Intent.createChooser(sendEmailIntent,
 					"Send results..."));
 		} catch (android.content.ActivityNotFoundException ex) {
-			Toast.makeText(this, "There are no email clients installed.",
+			Toast.makeText(this,
+					"There are no email clients installed.",
 					Toast.LENGTH_LONG).show();
 		}
 	}
@@ -79,14 +78,16 @@ public class SubmitChallengeResponseActivity extends Activity {
 		emailText.append("</StarsEducationValue>\n<StarsDifficulty>");
 		emailText.append(ratingDifficulty.getRating());
 		emailText.append("</StarsDifficulty>");
-		sendEmailIntent.putExtra(Intent.EXTRA_TEXT, emailText.toString());
+		sendEmailIntent.putExtra(Intent.EXTRA_TEXT,
+				emailText.toString());
 	}
 
 	private void setResponseSubject(final Intent sendEmailIntent) {
 		final StringBuilder emailSubject = new StringBuilder(
 				"Challenge response - ");
 		emailSubject.append(response.getChallenge().getName());
-		sendEmailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject.toString());
+		sendEmailIntent.putExtra(Intent.EXTRA_SUBJECT,
+				emailSubject.toString());
 	}
 
 	private void setResponseRecipient(final Intent sendEmailIntent) {

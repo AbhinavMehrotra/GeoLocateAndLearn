@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.geolocateandlearn.location.Locator;
 import com.geolocateandlearn.model.PointOfInterest;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdate;
@@ -44,6 +45,7 @@ public class NearbyActivity extends FragmentActivity {
 	private ArrayList<String> poiNY = new ArrayList<String>();
 
 	private ArrayAdapter<PointOfInterest> poiAdapter;
+	private Location currentLocation;
 
 	// private LinearLayout linear;
 
@@ -56,11 +58,6 @@ public class NearbyActivity extends FragmentActivity {
 		poiAdapter = new ArrayAdapter<PointOfInterest>(this,
 				R.layout.point_of_interest);
 		poiListView.setAdapter(poiAdapter);
-		
-		poiAdapter.clear();
-		poiAdapter.add(new PointOfInterest("9/11 Exhibit"));
-		poiAdapter.add(new PointOfInterest("Fraunces Tavern"));
-		poiAdapter.add(new PointOfInterest("Skyscraper Museum"));
 
 		// TODO
 
@@ -68,9 +65,6 @@ public class NearbyActivity extends FragmentActivity {
 		poiLondon.add("Borough Market");
 		poiLondon.add("Monument");
 		poiLondon.add("The George Inn");
-		poiNY.add("Trinity Church");
-		poiNY.add("Circle Line Ferries");
-		poiNY.add("Skyscraper Museum");
 		Toast.makeText(getApplicationContext(),
 				"Getting your location.", Toast.LENGTH_LONG).show();
 		pb = (ProgressBar) findViewById(R.id.progressBar);
@@ -111,6 +105,26 @@ public class NearbyActivity extends FragmentActivity {
 		};
 		String provider = lm.getBestProvider(new Criteria(), true);
 		lm.requestLocationUpdates(provider, 10000, 0, ll);
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		currentLocation = Locator.getCurrentLocation(this);
+		reloadPointsOfInterest();
+	}
+
+	private void reloadPointsOfInterest() {
+		poiAdapter.clear();
+		poiAdapter.add(new PointOfInterest("9/11 Exhibit"));
+		poiAdapter.add(new PointOfInterest("Fraunces Tavern"));
+		poiAdapter.add(new PointOfInterest("Skyscraper Museum"));
+	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
 	}
 
 	@Override
