@@ -36,7 +36,6 @@ public class NearbyActivity extends FragmentActivity {
 	private LocationListener ll;
 	private Location loc;
 	private ProgressBar pb;
-	private String Tag = "Geo Tagger";
 	private String city;
 	private ArrayList<String> poiLondon=new ArrayList<String>();
 	private ArrayList<String> poiNY=new ArrayList<String>();

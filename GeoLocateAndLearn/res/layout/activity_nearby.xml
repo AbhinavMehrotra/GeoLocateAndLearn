@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="10dp" >
 
     <fragment
         android:id="@+id/map"
@@ -10,24 +11,22 @@
         android:layout_height="172dp"
         class="com.google.android.gms.maps.SupportMapFragment" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nearby"
-        android:textSize="30sp" />
-
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal" />
+        android:layout_gravity="center" />
 
-    <LinearLayout
-        android:id="@+id/linear"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nearby_points_of_interest"
+        android:textSize="30sp" />
+
+    <ListView
+        android:id="@+id/poi_listview"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:orientation="vertical" />
 
 </LinearLayout>
