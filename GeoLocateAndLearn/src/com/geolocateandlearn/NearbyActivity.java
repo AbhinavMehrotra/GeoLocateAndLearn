@@ -1,6 +1,7 @@
 package com.geolocateandlearn;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import android.content.Intent;
 import android.location.Criteria;
@@ -95,7 +96,7 @@ public class NearbyActivity extends FragmentActivity {
 				pb.setVisibility(ProgressBar.INVISIBLE);
 				loc = location;
 				setUpMapIfNeeded(loc);
-				city = getNearestCity(loc).toUpperCase();
+				city = getNearestCity(loc).toUpperCase(Locale.US);
 				Toast.makeText(getApplicationContext(),
 						"You are near " + city, Toast.LENGTH_LONG)
 						.show();
@@ -116,9 +117,23 @@ public class NearbyActivity extends FragmentActivity {
 
 	private void reloadPointsOfInterest() {
 		poiAdapter.clear();
-		poiAdapter.add(new PointOfInterest("9/11 Exhibit"));
-		poiAdapter.add(new PointOfInterest("Fraunces Tavern"));
-		poiAdapter.add(new PointOfInterest("Skyscraper Museum"));
+		if (currentLocation.getLatitude() == Locator.DUMMY_LATITUDE_LONDON
+				&& currentLocation.getLongitude() == Locator.DUMMY_LONGITUDE_LONDON) {
+			poiAdapter.add(new PointOfInterest("London 1"));
+			poiAdapter.add(new PointOfInterest("london 2"));
+			poiAdapter.add(new PointOfInterest("london 3"));
+		} else if (currentLocation.getLatitude() == Locator.DUMMY_LATITUDE_NEWYORK
+				&& currentLocation.getLongitude() == Locator.DUMMY_LONGITUDE_NEWYORK) {
+			poiAdapter.add(new PointOfInterest("9/11 Exhibit"));
+			poiAdapter.add(new PointOfInterest("Fraunces Tavern"));
+			poiAdapter.add(new PointOfInterest("Skyscraper Museum"));
+		}
+		if (currentLocation.getLatitude() == Locator.DUMMY_LATITUDE_SYDNEY
+				&& currentLocation.getLongitude() == Locator.DUMMY_LONGITUDE_SYDNEY) {
+			poiAdapter.add(new PointOfInterest("sydney 1"));
+			poiAdapter.add(new PointOfInterest("sydney 2"));
+			poiAdapter.add(new PointOfInterest("sydney 3"));
+		}
 	}
 
 	@Override

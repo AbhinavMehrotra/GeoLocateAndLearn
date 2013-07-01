@@ -1,5 +1,7 @@
 package com.geolocateandlearn.data;
 
+import java.util.Locale;
+
 import android.content.Context;
 import android.preference.PreferenceManager;
 
@@ -28,9 +30,10 @@ public class AppPreferences {
 
 	public GeoLocationSource getGeoLocationSource(final Context context) {
 		return GeoLocationSource.valueOf(PreferenceManager
-				.getDefaultSharedPreferences(context).getString(
-						KEY_GEOLOCATION_SOURCE,
-						GeoLocationSource.NONE.toString()));
+				.getDefaultSharedPreferences(context)
+				.getString(KEY_GEOLOCATION_SOURCE,
+						GeoLocationSource.NONE.toString())
+				.toUpperCase(Locale.US));
 	}
 
 }
