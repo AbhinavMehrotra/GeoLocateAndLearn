@@ -32,7 +32,7 @@ public class AppPreferences {
 		return GeoLocationSource.valueOf(PreferenceManager
 				.getDefaultSharedPreferences(context)
 				.getString(KEY_GEOLOCATION_SOURCE,
-						GeoLocationSource.NONE.toString())
+						GeoLocationSource.ACTUAL.toString())
 				.toUpperCase(Locale.US));
 	}
 

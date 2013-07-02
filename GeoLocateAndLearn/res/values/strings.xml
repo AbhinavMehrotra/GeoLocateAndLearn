@@ -64,5 +64,6 @@
 
     <string name="geolocation_source_values_default">actual</string>
     <string name="nearby_points_of_interest">Nearby Points of Interest</string>
+    <string name="output_area">Output area</string>
 
 </resources>

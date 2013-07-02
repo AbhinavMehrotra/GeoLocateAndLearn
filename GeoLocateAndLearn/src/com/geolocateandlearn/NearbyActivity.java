@@ -1,6 +1,7 @@
 package com.geolocateandlearn;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 import android.content.Intent;
@@ -54,18 +55,14 @@ public class NearbyActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nearby);
-		final ListView poiListView = (ListView) findViewById(R.id.poi_listview);
-
-		poiAdapter = new ArrayAdapter<PointOfInterest>(this,
-				R.layout.point_of_interest);
-		poiListView.setAdapter(poiAdapter);
+		createPoiList();
 
 		// TODO
 
 		// linear = (LinearLayout)findViewById(R.id.linear);
-		poiLondon.add("Borough Market");
-		poiLondon.add("Monument");
-		poiLondon.add("The George Inn");
+		// poiLondon.add("Borough Market");
+		// poiLondon.add("Monument");
+		// poiLondon.add("The George Inn");
 		Toast.makeText(getApplicationContext(),
 				"Getting your location.", Toast.LENGTH_LONG).show();
 		pb = (ProgressBar) findViewById(R.id.progressBar);
@@ -106,6 +103,15 @@ public class NearbyActivity extends FragmentActivity {
 		};
 		String provider = lm.getBestProvider(new Criteria(), true);
 		lm.requestLocationUpdates(provider, 10000, 0, ll);
+
+		postOutput();
+	}
+
+	private void createPoiList() {
+		final ListView poiListView = (ListView) findViewById(R.id.poi_listview);
+		poiAdapter = new ArrayAdapter<PointOfInterest>(this,
+				R.layout.point_of_interest);
+		poiListView.setAdapter(poiAdapter);
 	}
 
 	@Override
@@ -238,5 +244,57 @@ public class NearbyActivity extends FragmentActivity {
 			l.addView(iv);
 			// linear.addView(l);
 		}
+	}
+
+	/**
+	 * TODO TRAINING
+	 */
+	private boolean delayGateInterrupted = false;
+	private Date datepass = new Date(12);
+	private final Object delayLock1 = new Object();
+
+	/**
+	 * TODO TRAINING
+	 */
+	private class DelayGate implements Runnable {
+
+		public void run() {
+			try {
+				Thread.sleep(650);
+				datepass = new Date();
+				synchronized (delayLock1) {
+					delayLock1.notify();
+				}
+			} catch (InterruptedException e) {
+				delayGateInterrupted = true;
+			}
+		}
+
+	}
+
+	/**
+	 * TODO TRAINING
+	 */
+	private void postOutput() {
+		final TextView outputTextView = (TextView) findViewById(R.id.nearby_poi_output_area);
+		final Thread currentThread = Thread.currentThread();
+		outputTextView.setText(currentThread.toString());
+
+		final Thread delayThread1 = new Thread(new DelayGate(),
+				"delay1");
+		outputTextView.setText(datepass.toString() + "; delay: "
+				+ delayGateInterrupted);
+		synchronized (delayLock1) {
+			try {
+				delayThread1.start();
+				delayLock1.wait();
+				outputTextView.setText(datepass.toString()
+						+ "; delay: " + delayGateInterrupted);
+			} catch (InterruptedException e) {
+				outputTextView.setText("WAIT interrupted");
+			}
+
+		}
+
 	}
 }

@@ -43,7 +43,6 @@ public class Locator {
 				sydney.setLatitude(DUMMY_LATITUDE_SYDNEY);
 				sydney.setLongitude(DUMMY_LONGITUDE_SYDNEY);
 				return sydney;
-			case NONE:
 			default:
 				throw new IllegalStateException(
 						"Cannot respond to no provider yet");
