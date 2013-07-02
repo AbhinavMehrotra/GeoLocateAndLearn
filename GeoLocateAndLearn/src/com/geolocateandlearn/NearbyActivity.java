@@ -58,7 +58,7 @@ public class NearbyActivity extends FragmentActivity {
 		setContentView(R.layout.activity_nearby);
 		createPoiList();
 
-		// TODO
+		// TODO geolocation
 
 		// linear = (LinearLayout)findViewById(R.id.linear);
 		// poiLondon.add("Borough Market");

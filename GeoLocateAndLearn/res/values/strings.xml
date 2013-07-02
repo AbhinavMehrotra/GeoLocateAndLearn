@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
 
     <string name="app_name">GeoLocateAndLearn</string>
@@ -10,15 +11,22 @@
     <string name="title_activity_location">LocationActivity</string>
     <string name="preferences">Preferences</string>
     <string name="app_id">518620884845095</string>
-    <string name="about_content">Pearson English Learn and Go is a location-aware mobile application, 
-        designed to supplement formal learning in language schools around the world. 
-		It provides genuine immersion in the life and culture of English-speaking cities in which students study, 
-		by locating points of interest in the immediate vicinity of the learner, then setting fun challenges which learners will encounter in everyday authentic scenarios.
- 		Alternatively, students in any location can choose from a range of challenges suitable for practice with their peers, in or out of class.
- 		Information on points of interest is drawn from the Dorling Kindersley Eyewitness Guide series.
- 		Challenge content has been created by Pearson English, with dictionary definitions from the Longman Dictionary of Contemporary English.
- 		Developers: Adam, Abhinav, Dean, Jacqueline, Nathan, Steve.
- 		Event: Pan Pearson Hackathon 2013.</string>
+    <string name="about_content">Pearson English Learn and Go is a location-aware
+		mobile application,
+		designed to supplement formal learning in language schools around the world.
+		It provides genuine immersion in the life and culture of
+		English-speaking cities in which students study,
+		by locating points of interest in the immediate vicinity of the learner,
+		then setting fun challenges which learners will encounter in everyday
+		authentic scenarios.
+		Alternatively, students in any location can choose from a range of challenges
+		suitable for practice with their peers, in or out of class.
+		Information on points of interest is drawn from the Dorling Kindersley
+		Eyewitness Guide series.
+		Challenge content has been created by Pearson English, with dictionary
+		definitions from the Longman Dictionary of Contemporary English.
+		Developers: Adam, Abhinav, Dean, Jacqueline, Nathan, Steve.
+		Event: Pan Pearson Hackathon 2013.</string>
     <string name="title_activity_locations">LocationsActivity</string>
     <string name="title_activity_london">LondonActivity</string>
     <string name="title_activity_new_york">NewYorkActivity</string>
@@ -30,7 +38,8 @@
     <string name="reset">Reset</string>
     <string name="reset_skills">Reset Skills</string>
     <string name="practice_challenges">Practice Challenges</string>
-    <string name="practice_challenges_instructions">1. Select the skills you\&apos;d like to practice.\n2. Choose a challenge to complete together.</string>
+    <string name="practice_challenges_instructions">1. Select the skills you\&apos;d like to
+		practice.\n2. Choose a challenge to complete together.</string>
     <string name="perform_practice_challenge">Perform Practice Challenge</string>
     <string name="submit">Submit</string>
     <string name="submit_challenge_response">Submit Challenge Response</string>
@@ -46,7 +55,8 @@
     <string name="me">Me</string>
     <string name="credits">Credits</string>
     <string name="project_team">Project Team</string>
-    <string name="project_team_names">Abhinav Mehrotra\nAdam Webb\nDean Kitchen\nJacqueline Cheng\nNathan Harris\nSteven Schwartz</string>
+    <string name="project_team_names">Abhinav Mehrotra\nAdam Webb\nDean
+		Kitchen\nJacqueline Cheng\nNathan Harris\nSteven Schwartz</string>
     <string name="ok">OK</string>
 
     <string-array name="geolocation_source_choices">
@@ -65,5 +75,9 @@
     <string name="geolocation_source_values_default">actual</string>
     <string name="nearby_points_of_interest">Nearby Points of Interest</string>
     <string name="output_area">Output area</string>
+    <string name="ellipsis">&#8230;</string>
+    <string name="submit_answers">Submit answers</string>
+    <string name="record_challenge">Record challenge</string>
+    <string name="not_implemented_bang">Not implemented!</string>
 
 </resources>

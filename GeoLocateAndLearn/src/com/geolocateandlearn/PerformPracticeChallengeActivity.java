@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.geolocateandlearn.annotations.ArchitectureSegment;
 import com.geolocateandlearn.model.ChallengeResponse;
@@ -50,5 +51,10 @@ public class PerformPracticeChallengeActivity extends Activity {
 				SubmitChallengeResponseActivity.EXTRA_RESPONSE,
 				response);
 		startActivity(submitIntent);
+	}
+
+	public void recordChallenge(View v) {
+		Toast.makeText(this, R.string.not_implemented_bang,
+				Toast.LENGTH_LONG).show();
 	}
 }
