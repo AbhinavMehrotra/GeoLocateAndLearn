@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.geolocateandlearn.data.GeoLocationSource;
 import com.geolocateandlearn.location.Locator;
 import com.geolocateandlearn.model.PointOfInterest;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -277,24 +278,15 @@ public class NearbyActivity extends FragmentActivity {
 	 */
 	private void postOutput() {
 		final TextView outputTextView = (TextView) findViewById(R.id.nearby_poi_output_area);
-		final Thread currentThread = Thread.currentThread();
-		outputTextView.setText(currentThread.toString());
 
-		final Thread delayThread1 = new Thread(new DelayGate(),
-				"delay1");
-		outputTextView.setText(datepass.toString() + "; delay: "
-				+ delayGateInterrupted);
-		synchronized (delayLock1) {
-			try {
-				delayThread1.start();
-				delayLock1.wait();
-				outputTextView.setText(datepass.toString()
-						+ "; delay: " + delayGateInterrupted);
-			} catch (InterruptedException e) {
-				outputTextView.setText("WAIT interrupted");
-			}
+		outputTextView.setText("");
+		for (GeoLocationSource source : GeoLocationSource.values()) {
+			outputTextView.append(source.toString());
+			outputTextView.append(" - ");
+			outputTextView.append(Integer.toBinaryString(source
+					.ordinal()));
+			outputTextView.append(" // ");
 
 		}
-
 	}
 }
