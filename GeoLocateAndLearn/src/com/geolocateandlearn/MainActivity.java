@@ -1,5 +1,7 @@
 package com.geolocateandlearn;
 
+import com.geolocateandlearn.annotations.ArchitectureSegment;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface.OnClickListener;
@@ -10,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+@ArchitectureSegment(segment="core", sequence=1)
 public class MainActivity extends Activity {
 
 	private Intent intent;

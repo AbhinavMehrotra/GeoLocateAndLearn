@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.geolocateandlearn.annotations.ArchitectureSegment;
 import com.geolocateandlearn.model.ChallengeResponse;
 import com.geolocateandlearn.model.PracticeChallenge;
 
+@ArchitectureSegment(segment = "practice", sequence = 2)
 public class PerformPracticeChallengeActivity extends Activity {
 
 	protected static final String EXTRA_CHALLENGE = "EXTRA_CHALLENGE";
@@ -33,7 +35,8 @@ public class PerformPracticeChallengeActivity extends Activity {
 	}
 
 	public void submitAnswers(View v) {
-		final ChallengeResponse response = new ChallengeResponse(theChallenge);
+		final ChallengeResponse response = new ChallengeResponse(
+				theChallenge);
 		final EditText answer1 = (EditText) findViewById(R.id.answer1);
 		response.setAnswer(1, answer1.getText().toString());
 		final EditText answer2 = (EditText) findViewById(R.id.answer2);
@@ -43,7 +46,9 @@ public class PerformPracticeChallengeActivity extends Activity {
 
 		final Intent submitIntent = new Intent(this,
 				SubmitChallengeResponseActivity.class);
-		submitIntent.putExtra(SubmitChallengeResponseActivity.EXTRA_RESPONSE, response);
+		submitIntent.putExtra(
+				SubmitChallengeResponseActivity.EXTRA_RESPONSE,
+				response);
 		startActivity(submitIntent);
 	}
 }

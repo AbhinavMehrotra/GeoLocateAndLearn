@@ -1,7 +1,7 @@
 package com.geolocateandlearn;
 
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
 
 import android.content.Intent;
@@ -21,7 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.geolocateandlearn.data.GeoLocationSource;
+import com.geolocateandlearn.annotations.ArchitectureSegment;
 import com.geolocateandlearn.location.Locator;
 import com.geolocateandlearn.model.PointOfInterest;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -30,11 +30,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
-
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+@ArchitectureSegment(segment = "nearby", sequence = 1)
 public class NearbyActivity extends FragmentActivity {
 
 	public static final String EXTRA_MESSAGE = "com.geolocateandlearn.NearbyActivity";
@@ -250,43 +250,13 @@ public class NearbyActivity extends FragmentActivity {
 	/**
 	 * TODO TRAINING
 	 */
-	private boolean delayGateInterrupted = false;
-	private Date datepass = new Date(12);
-	private final Object delayLock1 = new Object();
-
-	/**
-	 * TODO TRAINING
-	 */
-	private class DelayGate implements Runnable {
-
-		public void run() {
-			try {
-				Thread.sleep(650);
-				datepass = new Date();
-				synchronized (delayLock1) {
-					delayLock1.notify();
-				}
-			} catch (InterruptedException e) {
-				delayGateInterrupted = true;
-			}
-		}
-
-	}
-
-	/**
-	 * TODO TRAINING
-	 */
 	private void postOutput() {
 		final TextView outputTextView = (TextView) findViewById(R.id.nearby_poi_output_area);
-
 		outputTextView.setText("");
-		for (GeoLocationSource source : GeoLocationSource.values()) {
-			outputTextView.append(source.toString());
-			outputTextView.append(" - ");
-			outputTextView.append(Integer.toBinaryString(source
-					.ordinal()));
-			outputTextView.append(" // ");
 
+		final Class<?> myclass = getClass();
+		for (Annotation ann1 : myclass.getAnnotations()) {
+			outputTextView.append(ann1.toString());
 		}
 	}
 }

@@ -16,11 +16,13 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 
+import com.geolocateandlearn.annotations.ArchitectureSegment;
 import com.geolocateandlearn.data.ChallengeDatabase;
 import com.geolocateandlearn.data.PracticeChallengeQuery;
 import com.geolocateandlearn.model.Challenge;
 import com.geolocateandlearn.model.PracticeChallenge;
 
+@ArchitectureSegment(segment = "practice", sequence = 1)
 public class PracticeChallengesActivity extends ListActivity {
 
 	private CheckBox skillListeningCheckbox;
@@ -45,15 +47,17 @@ public class PracticeChallengesActivity extends ListActivity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> parentView,
-					View clickedView, int clickedPosition, long clickedId) {
+					View clickedView, int clickedPosition,
+					long clickedId) {
 				final PracticeChallenge selectedChallenge = (PracticeChallenge) selectedChallengesAdapter
 						.getItem(clickedPosition);
 				final Intent challengeIntent = new Intent(
 						PracticeChallengesActivity.this,
 						PerformPracticeChallengeActivity.class);
-				challengeIntent.putExtra(
-						PerformPracticeChallengeActivity.EXTRA_CHALLENGE,
-						selectedChallenge);
+				challengeIntent
+						.putExtra(
+								PerformPracticeChallengeActivity.EXTRA_CHALLENGE,
+								selectedChallenge);
 				startActivity(challengeIntent);
 			}
 		});
@@ -105,7 +109,8 @@ public class PracticeChallengesActivity extends ListActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_practice_challenge, menu);
+		getMenuInflater().inflate(R.menu.activity_practice_challenge,
+				menu);
 		return true;
 	}
 
