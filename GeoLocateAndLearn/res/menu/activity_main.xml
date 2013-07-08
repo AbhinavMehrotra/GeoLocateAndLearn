@@ -14,5 +14,12 @@
         android:orderInCategory="200"
         android:showAsAction="ifRoom"
         android:title="@string/credits"/>
+    <item
+        android:id="@+id/menu_about"
+        android:icon="@drawable/ic_about_2"
+        android:onClick="showAbout"
+        android:orderInCategory="300"
+        android:showAsAction="ifRoom"
+        android:title="@string/about"/>
 
 </menu>

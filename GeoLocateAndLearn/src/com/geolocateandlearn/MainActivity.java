@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-@ArchitectureSegment(segment="core", sequence=1)
+@ArchitectureSegment(segment = "core", sequence = 1)
 public class MainActivity extends Activity {
 
 	private Intent intent;
@@ -63,19 +63,26 @@ public class MainActivity extends Activity {
 
 	}
 
+	private final OnClickListener onDismissWindow = new OnClickListener() {
+
+		public void onClick(DialogInterface dialog, int which) {
+			dialog.cancel();
+		}
+	};
+
 	public void showCredits(MenuItem menuItem) {
-		final OnClickListener onCreditsWindowDismiss = new OnClickListener() {
-
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.cancel();
-			}
-		};
-
 		new AlertDialog.Builder(this)
 				.setTitle(getString(R.string.project_team))
 				.setMessage(getString(R.string.project_team_names))
 				.setIcon(R.drawable.ic_launcher_2)
-				.setPositiveButton(R.string.ok, onCreditsWindowDismiss)
-				.show();
+				.setPositiveButton(R.string.ok, onDismissWindow).show();
+	}
+
+	public void showAbout(MenuItem menuItem) {
+		new AlertDialog.Builder(this)
+				.setTitle(getString(R.string.app_name))
+				.setMessage(getString(R.string.about_content_alert_dialog))
+				.setIcon(R.drawable.ic_about_2)
+				.setPositiveButton(R.string.ok, onDismissWindow).show();
 	}
 }

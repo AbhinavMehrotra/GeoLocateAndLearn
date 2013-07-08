@@ -26,7 +26,10 @@
 		Challenge content has been created by Pearson English, with dictionary
 		definitions from the Longman Dictionary of Contemporary English.
 		Developers: Adam, Abhinav, Dean, Jacqueline, Nathan, Steve.
-		Event: Pan Pearson Hackathon 2013.</string>
+		Event: Pan Pearson Hackathon 2013.
+</string>
+    <string name="about_content_alert_dialog">Pearson English Learn and Go is a location-aware mobile application, designed to supplement formal learning in language schools around the world. It provides genuine immersion in the life and culture of English-speaking cities in which students study, by locating points of interest in the immediate vicinity of the learner, then setting fun challenges which learners will encounter in everyday authentic scenarios. Alternatively, students in any location can choose from a range of challenges suitable for practice with their peers, in or out of class. Information on points of interest is drawn from the Dorling Kindersley Eyewitness Guide series. Challenge content has been created by Pearson English, with dictionary definitions from the Longman Dictionary of Contemporary English.\n\nOriginally created for the Pan Pearson Hackathon: 2013.
+</string>
     <string name="title_activity_locations">LocationsActivity</string>
     <string name="title_activity_london">LondonActivity</string>
     <string name="title_activity_new_york">NewYorkActivity</string>
