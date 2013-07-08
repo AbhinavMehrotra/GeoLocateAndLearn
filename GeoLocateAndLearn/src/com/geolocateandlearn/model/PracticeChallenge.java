@@ -27,7 +27,17 @@ public class PracticeChallenge implements Challenge, Serializable {
 
 	@Override
 	public String toString() {
-		return name;
+		final StringBuilder output = new StringBuilder();
+		output.append(name);
+		output.append(" -- ");
+		int questionsSpecified = 0;
+		for (int qi = 0; qi < 3; qi++) {
+			if (question[qi] != null && question[qi].length() != 0)
+				questionsSpecified++;
+		}
+		output.append(questionsSpecified);
+		output.append(" questions are specified");
+		return output.toString();
 	}
 
 	public CharSequence getQuestion(int questionNumber) {
