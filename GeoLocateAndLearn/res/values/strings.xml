@@ -82,5 +82,6 @@
     <string name="submit_answers">Submit answers</string>
     <string name="record_challenge">Record challenge</string>
     <string name="not_implemented_bang">Not implemented!</string>
+    <string name="application_logo">Application Logo</string>
 
 </resources>
