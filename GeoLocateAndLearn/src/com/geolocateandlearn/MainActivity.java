@@ -81,8 +81,9 @@ public class MainActivity extends Activity {
 	public void showAbout(MenuItem menuItem) {
 		new AlertDialog.Builder(this)
 				.setTitle(getString(R.string.app_name))
-				.setMessage(getString(R.string.about_content_alert_dialog))
-				.setIcon(R.drawable.ic_about_2)
+				.setMessage(
+						getString(R.string.about_content_alert_dialog))
+				.setIcon(R.drawable.ic_launcher_2)
 				.setPositiveButton(R.string.ok, onDismissWindow).show();
 	}
 }
