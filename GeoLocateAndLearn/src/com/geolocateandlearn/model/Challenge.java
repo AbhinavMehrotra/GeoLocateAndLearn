@@ -1,9 +1,11 @@
 package com.geolocateandlearn.model;
 
-public interface Challenge {
+public interface Challenge extends Cloneable, Comparable<Challenge> {
 
 	public long getId();
 
-	public CharSequence getName();
+	public String getName();
+
+	public Challenge clone();
 
 }

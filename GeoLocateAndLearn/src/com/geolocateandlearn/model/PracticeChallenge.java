@@ -1,8 +1,15 @@
 package com.geolocateandlearn.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Iterator;
 
-public class PracticeChallenge implements Challenge, Serializable {
+/**
+ * Iterate through questions.
+ * @author USCHWST
+ */
+public class PracticeChallenge implements Challenge, Serializable,
+		Iterable<String> {
 	private static final long serialVersionUID = 1L;
 	private final long id;
 	private final String name;
@@ -21,7 +28,7 @@ public class PracticeChallenge implements Challenge, Serializable {
 		return id;
 	}
 
-	public CharSequence getName() {
+	public String getName() {
 		return name;
 	}
 
@@ -42,5 +49,19 @@ public class PracticeChallenge implements Challenge, Serializable {
 
 	public CharSequence getQuestion(int questionNumber) {
 		return question[questionNumber - 1];
+	}
+
+	@Override
+	public PracticeChallenge clone() {
+		return new PracticeChallenge(name, this.question[0],
+				this.question[1], this.question[2]);
+	}
+
+	public int compareTo(Challenge another) {
+		return this.getName().compareTo(another.getName());
+	}
+
+	public Iterator<String> iterator() {
+		return Arrays.asList(question).listIterator();
 	}
 }
