@@ -3,16 +3,15 @@ package com.geolocateandlearn;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.geolocateandlearn.annotations.ArchitectureSegment;
-import com.geolocateandlearn.model.Challenge;
-import com.geolocateandlearn.model.ChallengeRecord;
-import com.geolocateandlearn.model.PracticeChallenge;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
+
+import com.geolocateandlearn.annotations.ArchitectureSegment;
+import com.geolocateandlearn.model.ChallengeRecord;
+import com.geolocateandlearn.model.PracticeChallenge;
 
 @ArchitectureSegment(segment = "core")
 public class AboutActivity extends Activity {
@@ -35,8 +34,9 @@ public class AboutActivity extends Activity {
 				"Who is buried in the Lincoln Tunnel",
 				"Is Marginal Road important?",
 				"Where was the Upside-Down Building?");
-		final ChallengeRecord<PracticeChallenge, Float> record1 = new ChallengeRecord<PracticeChallenge, Float>(
-				challenge1, new ConcurrentHashMap<Long, TreeSet<Byte>>());
+		final ChallengeRecord<PracticeChallenge> record1 = new ChallengeRecord<PracticeChallenge>(
+				challenge1,
+				new ConcurrentHashMap<Long, TreeSet<Byte>>());
 		outputBuilder.append(challenge1);
 		outputBuilder.append('\n');
 		outputBuilder.append(record1);
