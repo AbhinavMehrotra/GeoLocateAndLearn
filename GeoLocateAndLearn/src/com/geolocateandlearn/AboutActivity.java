@@ -1,5 +1,7 @@
 package com.geolocateandlearn;
 
+import java.util.PriorityQueue;
+import java.util.Random;
 import java.util.TreeSet;
 
 import android.app.Activity;
@@ -37,47 +39,55 @@ public class AboutActivity extends Activity {
 		final ChallengeRecord<PracticeChallenge> record1 = new ChallengeRecord<PracticeChallenge>(
 				challenge1);
 
-		final TreeSet<String> questionSet = new TreeSet<String>();
+		class PQE implements Comparable<PQE> {
+			final private char title;
+			final private int order;
 
-		outputBuilder.append("Before: ");
-		outputBuilder.append(questionSet.size());
-		outputBuilder.append(" questions.\n");
+			public PQE(char title, int order) {
+				this.title = title;
+				this.order = order;
+			}
 
-		questionSet.add(question1);
-		questionSet.add(question2);
-		questionSet.add(question1);
-		questionSet.add(question3);
-		questionSet.add(question3);
-		questionSet.add(question2);
-		questionSet.add(question1);
-		questionSet.add(question2);
-		questionSet.add(question1);
-		questionSet.add(question3);
-		questionSet.add(question3);
-		questionSet.add(question3);
+			public char getTitle() {
+				return title;
+			}
 
-		outputBuilder.append("After: ");
-		outputBuilder.append(questionSet.size());
-		outputBuilder.append(" questions.\n");
+			public int getOrder() {
+				return order;
+			}
 
-		outputBuilder.append("First: ");
-		outputBuilder.append(questionSet.first());
-		outputBuilder.append('\n');
+			public int compareTo(PQE that) {
+				if (this.order == that.order)
+					return 0;
+				else if (this.order < that.order)
+					return -1;
+				else
+					return 1;
+			}
 
-		outputBuilder.append("Last: ");
-		outputBuilder.append(questionSet.last());
-		outputBuilder.append('\n');
+		}
 
-		outputBuilder.append("Head L: ");
-		outputBuilder.append(questionSet.headSet("Which"));
-		outputBuilder.append('\n');
+		outputBuilder.append("Constructing values:\n");
+		final PriorityQueue<PQE> pqueue = new PriorityQueue<PQE>();
+		final Random random = new Random();
+		final int upperI = random.nextInt(20);
+		for (int newElement = 0; newElement < upperI; newElement++) {
+			// Random char in [33, 126]
+			final int newTitleInt = random.nextInt(94) + 33;
+			final char newTitleChar = Character.toChars(newTitleInt)[0];
+			final int newOrder = random.nextInt(50);
+			pqueue.add(new PQE(newTitleChar, newOrder));
+			outputBuilder.append("   ").append(newTitleChar)
+					.append(" ").append(newOrder).append("\n");
+		}
+		outputBuilder.append("\nRemoving values:\n");
 
-		outputBuilder.append("Tail, INcluding: ");
-		outputBuilder.append(questionSet.tailSet(question3, true));
-		outputBuilder.append('\n');
-
-		outputBuilder.append("Tail, EXcluding: ");
-		outputBuilder.append(questionSet.tailSet(question3, false));
+		while (!pqueue.isEmpty()) {
+			final PQE outbound = pqueue.remove();
+			outputBuilder.append("   ").append(outbound.getTitle())
+					.append(" ").append(outbound.getOrder())
+					.append("\n");
+		}
 		outputBuilder.append('\n');
 
 		outputTextView.setText(outputBuilder.toString());
