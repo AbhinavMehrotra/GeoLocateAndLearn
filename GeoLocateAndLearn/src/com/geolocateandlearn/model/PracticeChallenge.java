@@ -58,7 +58,11 @@ public class PracticeChallenge implements Challenge, Serializable,
 	}
 
 	public int compareTo(Challenge another) {
-		return this.getName().compareTo(another.getName());
+		final int nameComparison = this.getName().compareTo(
+				another.getName());
+		if (nameComparison == 0)
+			return Long.valueOf(id).compareTo(another.getId());
+		return nameComparison;
 	}
 
 	public Iterator<String> iterator() {

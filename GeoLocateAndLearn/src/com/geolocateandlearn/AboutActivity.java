@@ -1,6 +1,7 @@
 package com.geolocateandlearn;
 
-import java.util.PriorityQueue;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Random;
 
 import android.app.Activity;
@@ -62,27 +63,40 @@ public class AboutActivity extends Activity {
 		final TextView outputTextView = (TextView) findViewById(R.id.about_screen_textView);
 		// TODO Put output here.
 
-		outputBuilder.append("Constructing values:\n");
-		final PriorityQueue<PQE> pqueue = new PriorityQueue<PQE>();
+		outputBuilder.append("Constructing entries:\n");
+		final LinkedHashMap<Integer, PQE> pqueue = new LinkedHashMap<Integer, PQE>();
 		final Random random = new Random();
 		final int upperI = random.nextInt(20);
+		int putCount = 0;
+		int overwriteCount = 0;
 		for (int newElement = 0; newElement < upperI; newElement++) {
 			// Random char in [33, 126]
 			final int newTitleInt = random.nextInt(94) + 33;
 			final char newTitleChar = Character.toChars(newTitleInt)[0];
 			final int newOrder = random.nextInt(50);
-			pqueue.add(new PQE(newTitleChar, newOrder));
+			final PQE oldValue = pqueue.put(newOrder, new PQE(
+					newTitleChar, newOrder));
+			putCount++;
+			if (oldValue != null)
+				overwriteCount++;
 			outputBuilder.append("   ").append(newTitleChar)
 					.append(" ").append(newOrder).append("\n");
 		}
+		outputBuilder.append("\nPuts: ").append(putCount)
+				.append("; Overwrites: ").append(overwriteCount)
+				.append('\n');
 		outputBuilder.append("\nRemoving values:\n");
 
-		while (!pqueue.isEmpty()) {
-			final PQE outbound = pqueue.remove();
-			outputBuilder.append("   ").append(outbound.getTitle())
-					.append(" ").append(outbound.getOrder())
+		int getCount = 0;
+		for (Map.Entry<Integer, PQE> whmEntry : pqueue.entrySet()) {
+			outputBuilder.append("   ")
+					.append(whmEntry.getValue().getTitle()).append(" ")
+					.append(whmEntry.getKey()).append(" ")
+					.append(whmEntry.getValue().getOrder())
 					.append("\n");
+			getCount++;
 		}
+		outputBuilder.append("\nGets: ").append(getCount).append('\n');
 		outputBuilder.append('\n');
 
 		outputTextView.setText(outputBuilder.toString());

@@ -19,7 +19,8 @@
             android:id="@+id/about_screen_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/about_content" />
+            android:text="@string/about_content"
+            android:textSize="20sp" />
     </ScrollView>
 
 </LinearLayout>
