@@ -1,14 +1,9 @@
 package com.geolocateandlearn;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import android.app.Activity;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -41,46 +36,21 @@ public class AboutActivity extends Activity {
 		final TextView outputTextView = (TextView) findViewById(R.id.about_screen_textView);
 		// TODO Put output here.
 
-		final StringBuilder fileContents = new StringBuilder();
-		FileReader fileReader = null;
-		InputStream is = null;
-		BufferedReader bufferedReader = null;
-		try {
-			final AssetManager am = this.getAssets();
-			is = am.open(FILE_TO_READ);
-			bufferedReader = new BufferedReader(new InputStreamReader(
-					is));
-			String lineFromFile;
-			try {
-				while ((lineFromFile = bufferedReader.readLine()) != null) {
-					fileContents.append(lineFromFile).append('\n');
-				}
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} finally {
-			if (fileReader != null)
-				try {
-					fileReader.close();
-				} catch (IOException e) {
-					// noop
-				}
-		}
+		final GregorianCalendar cal = new GregorianCalendar();
+		outputBuilder.append("Now: ").append(cal.toString())
+				.append("\n\n");
 
-		outputBuilder.append("Read ").append(fileContents.length())
-				.append(" characters.\n");
+		cal.clear();
+		outputBuilder.append("Zero: ").append(cal.toString())
+				.append("\n\n");
 
-		final StringTokenizer tokenizer = new StringTokenizer(
-				fileContents.toString(), PERIOD);
-		int sentenceCount = 0;
-		while (tokenizer.hasMoreTokens()) {
-			tokenizer.nextToken();
-			sentenceCount++;
+		for (int i = 0; i < 24; i++) {
+			cal.add(Calendar.HOUR, 5);
+			cal.add(Calendar.MONTH, 2);
+			cal.add(Calendar.MINUTE, 27);
+			outputBuilder.append(i).append(": ").append(cal.toString())
+					.append("\n\n");
 		}
-		outputBuilder.append("Read ").append(sentenceCount)
-				.append(" sentences.\n");
 
 		outputTextView.setText(outputBuilder.toString());
 	}
