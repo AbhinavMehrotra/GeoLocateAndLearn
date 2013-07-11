@@ -19,6 +19,7 @@ import com.geolocateandlearn.model.PracticeChallenge;
 @ArchitectureSegment(segment = "core")
 public class AboutActivity extends Activity {
 
+	private static final String PERIOD = ".";
 	private static final String FILE_TO_READ = "lorenipsum.txt";
 	private final static String question1 = "Who is buried in the Lincoln Tunnel?";
 	private final static String question2 = "Is Marginal Road important?";
@@ -69,9 +70,17 @@ public class AboutActivity extends Activity {
 		}
 
 		outputBuilder.append("Read ").append(fileContents.length())
-				.append(" characters.");
+				.append(" characters.\n");
 
-		final StringTokenizer tokenizer = new StringTokenizer(" .");
+		final StringTokenizer tokenizer = new StringTokenizer(
+				fileContents.toString(), PERIOD);
+		int sentenceCount = 0;
+		while (tokenizer.hasMoreTokens()) {
+			tokenizer.nextToken();
+			sentenceCount++;
+		}
+		outputBuilder.append("Read ").append(sentenceCount)
+				.append(" sentences.\n");
 
 		outputTextView.setText(outputBuilder.toString());
 	}
