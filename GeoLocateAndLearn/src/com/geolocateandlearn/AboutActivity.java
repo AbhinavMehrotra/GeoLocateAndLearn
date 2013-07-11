@@ -1,10 +1,14 @@
 package com.geolocateandlearn;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Random;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 import android.app.Activity;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -15,6 +19,7 @@ import com.geolocateandlearn.model.PracticeChallenge;
 @ArchitectureSegment(segment = "core")
 public class AboutActivity extends Activity {
 
+	private static final String FILE_TO_READ = "lorenipsum.txt";
 	private final static String question1 = "Who is buried in the Lincoln Tunnel?";
 	private final static String question2 = "Is Marginal Road important?";
 	private final static String question3 = "Where was the Upside-Down Building?";
@@ -30,76 +35,44 @@ public class AboutActivity extends Activity {
 		loadOutput();
 	}
 
-	private class PQE implements Comparable<PQE> {
-		final private char title;
-		final private int order;
-
-		public PQE(char title, int order) {
-			this.title = title;
-			this.order = order;
-		}
-
-		public char getTitle() {
-			return title;
-		}
-
-		public int getOrder() {
-			return order;
-		}
-
-		public int compareTo(PQE that) {
-			if (this.order == that.order)
-				return 0;
-			else if (this.order < that.order)
-				return -1;
-			else
-				return 1;
-		}
-
-	}
-
 	private void loadOutput() {
 		final StringBuilder outputBuilder = new StringBuilder();
 		final TextView outputTextView = (TextView) findViewById(R.id.about_screen_textView);
 		// TODO Put output here.
 
-		outputBuilder.append("Constructing entries:\n");
-		final LinkedHashMap<Integer, PQE> pqueue = new LinkedHashMap<Integer, PQE>();
-		final Random random = new Random();
-		final int upperI = random.nextInt(20);
-		int putCount = 0;
-		int overwriteCount = 0;
-		for (int newElement = 0; newElement < upperI; newElement++) {
-			// Random char in [33, 126]
-			final int newTitleInt = random.nextInt(94) + 33;
-			final char newTitleChar = Character.toChars(newTitleInt)[0];
-			final int newOrder = random.nextInt(50);
-			final PQE oldValue = pqueue.put(newOrder, new PQE(
-					newTitleChar, newOrder));
-			putCount++;
-			if (oldValue != null)
-				overwriteCount++;
-			outputBuilder.append("   ").append(newTitleChar)
-					.append(" ").append(newOrder).append("\n");
+		final StringBuilder fileContents = new StringBuilder();
+		FileReader fileReader = null;
+		InputStream is = null;
+		BufferedReader bufferedReader = null;
+		try {
+			final AssetManager am = this.getAssets();
+			is = am.open(FILE_TO_READ);
+			bufferedReader = new BufferedReader(new InputStreamReader(
+					is));
+			String lineFromFile;
+			try {
+				while ((lineFromFile = bufferedReader.readLine()) != null) {
+					fileContents.append(lineFromFile).append('\n');
+				}
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (fileReader != null)
+				try {
+					fileReader.close();
+				} catch (IOException e) {
+					// noop
+				}
 		}
-		outputBuilder.append("\nPuts: ").append(putCount)
-				.append("; Overwrites: ").append(overwriteCount)
-				.append('\n');
-		outputBuilder.append("\nRemoving values:\n");
 
-		int getCount = 0;
-		for (Map.Entry<Integer, PQE> whmEntry : pqueue.entrySet()) {
-			outputBuilder.append("   ")
-					.append(whmEntry.getValue().getTitle()).append(" ")
-					.append(whmEntry.getKey()).append(" ")
-					.append(whmEntry.getValue().getOrder())
-					.append("\n");
-			getCount++;
-		}
-		outputBuilder.append("\nGets: ").append(getCount).append('\n');
-		outputBuilder.append('\n');
+		outputBuilder.append("Read ").append(fileContents.length())
+				.append(" characters.");
+
+		final StringTokenizer tokenizer = new StringTokenizer(" .");
 
 		outputTextView.setText(outputBuilder.toString());
 	}
-
 }
