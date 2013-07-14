@@ -1,0 +1,2 @@
+park=Parque Federal
+lagoon=Mar Yucatan
