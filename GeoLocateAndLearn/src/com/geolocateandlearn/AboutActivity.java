@@ -18,7 +18,6 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.geolocateandlearn.annotations.ArchitectureSegment;
 
@@ -27,7 +26,7 @@ public class AboutActivity extends Activity {
 
 	private final Random random = new Random(System.currentTimeMillis());
 	private final int PORT1 = random.nextInt(1024) + 1024;
-	private boolean runServer = true;
+	private boolean runThreads = true;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class AboutActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		runServer = false;
+		runThreads = false;
 		super.onDestroy();
 	}
 
@@ -61,43 +60,60 @@ public class AboutActivity extends Activity {
 
 			Socket clientSocket = null;
 			try {
-				final byte[] localIpAddress = { 0x0, 0x0, 0x0, 0x0 };
+				final byte[] localIpAddress = { 10, 0, 2, 2 };
 				InetAddress inetAddressToRequest = InetAddress
 						.getByAddress(localIpAddress);
 				outputBuilder.append("CLIENT: about to request on socket "
 						+ inetAddressToRequest + "\n");
 				publishProgress(outputBuilder);
 
-				clientSocket = new Socket();
-				final InetSocketAddress remoteSocketAddress = new InetSocketAddress(
-						inetAddressToRequest, PORT1);
-				clientSocket.connect(remoteSocketAddress, 5000);
-				outputBuilder
-						.append((clientSocket.isConnected()) ? "CLIENT: CONNECTED\n"
-								: "CLIENT: NOT_CONN\n");
-				publishProgress(outputBuilder);
+				while (runThreads) {
+					clientSocket = new Socket();
+					final InetSocketAddress remoteSocketAddress = new InetSocketAddress(
+							inetAddressToRequest, PORT1);
+					try {
+					clientSocket.connect(remoteSocketAddress, 500);
+					} catch (SocketTimeoutException ste) {
+						outputBuilder.append(" <TO>");
+						publishProgress(outputBuilder);
+					}
+					if (clientSocket.isConnected()) {
+						outputBuilder
+								.append((clientSocket.isConnected()) ? "CLIENT: CONNECTED\n"
+										: "CLIENT: NOT_CONN\n");
+						publishProgress(outputBuilder);
 
-				final InputStream clientis = clientSocket.getInputStream();
-				final ObjectInputStream clientois = new ObjectInputStream(
-						clientis);
+						final InputStream clientis = clientSocket
+								.getInputStream();
+						final ObjectInputStream clientois = new ObjectInputStream(
+								clientis);
 
-				outputBuilder.append("CLIENT: point 2\n");
-				publishProgress(outputBuilder);
+						outputBuilder.append("CLIENT: point 2\n");
+						publishProgress(outputBuilder);
 
-				final OutputStream clientos = clientSocket.getOutputStream();
-				final ObjectOutputStream clientoos = new ObjectOutputStream(
-						clientos);
+						final OutputStream clientos = clientSocket
+								.getOutputStream();
+						final ObjectOutputStream clientoos = new ObjectOutputStream(
+								clientos);
 
-				outputBuilder.append("CLIENT: point 3\n");
-				publishProgress(outputBuilder);
+						outputBuilder.append("CLIENT: point 3\n");
+						publishProgress(outputBuilder);
 
-				final Date currentTime = new Date();
-				outputBuilder.append("CLIENT: Request sum of time digits at ")
-						.append(currentTime).append(".\n");
-				publishProgress(outputBuilder);
-				clientoos.writeObject(currentTime);
+						final Date currentTime = new Date();
+						outputBuilder
+								.append("CLIENT: Request sum of time digits at ")
+								.append(currentTime).append(".\n");
+						publishProgress(outputBuilder);
+						clientoos.writeObject(currentTime);
 
-				outputBuilder.append("CLIENT: point 4\n");
+						outputBuilder.append("CLIENT: point 4\n");
+						publishProgress(outputBuilder);
+					} else {
+						outputBuilder.append(" <NC>");
+						publishProgress(outputBuilder);
+					}
+					Thread.yield();
+				}
 			} catch (UnknownHostException uhe) {
 				throw new RuntimeException(uhe);
 			} catch (IOException e) {
@@ -150,7 +166,7 @@ public class AboutActivity extends Activity {
 
 				serverSocket.setSoTimeout(200);
 
-				while (runServer) {
+				while (runThreads) {
 					try {
 						activeServerSocket = serverSocket.accept();
 						outputBuilder.append("SERVER: accepted connection\n");
@@ -181,12 +197,7 @@ public class AboutActivity extends Activity {
 						outputBuilder.append("*-");
 						publishProgress(outputBuilder);
 					}
-					try {
-						Thread.sleep(100);
-					} catch (InterruptedException e) {
-						outputBuilder.append("Server loop delay interruption: "
-								+ new Date());
-					}
+					Thread.yield();
 				}
 			} catch (IOException e) {
 				throw new RuntimeException(e);
