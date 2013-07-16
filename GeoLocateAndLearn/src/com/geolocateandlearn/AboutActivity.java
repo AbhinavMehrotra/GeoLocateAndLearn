@@ -23,7 +23,6 @@ public class AboutActivity extends Activity {
 
 		private static final long RIDE_TIME = 300;
 
-		private final List<Rider> lineToRide = new ArrayList<Rider>();
 		private final Set<Rider> onHorses = new HashSet<Rider>();
 
 		private final Semaphore ridePermits = new Semaphore(
@@ -47,22 +46,17 @@ public class AboutActivity extends Activity {
 				}
 				updateHigher(" Stop");
 				for (Rider rider : new ArrayList<Rider>(onHorses)) {
-					onHorses.remove(rider);
-					ridePermits.release();
 					rider.depart();
-					updateHigher(" " + rider.getId() + "_Exit");
 				}
 			}
 		}
 
-		public void getOnLine(Rider rider) {
-			// TODO Auto-generated method stub
-			updateHigher(" " + rider.getId() + "_Line");
-			lineToRide.add(rider);
-			ridePermits.acquireUninterruptibly();
-			lineToRide.remove(rider);
+		public void debark(Rider rider) {
+			onHorses.remove(rider);
+		}
+
+		public void board(Rider rider) {
 			onHorses.add(rider);
-			updateHigher(" " + rider.getId() + "_Horse");
 		}
 
 	}
@@ -78,22 +72,28 @@ public class AboutActivity extends Activity {
 			this.carousel = carousel;
 		}
 
-		public void depart() {
-			updateLower(" " + id + "_leave");
-		}
-
 		public int getId() {
 			return id;
 		}
 
-		public void getOnLine() {
-			carousel.getOnLine(this);
-		}
-
 		public void run() {
 			updateLower(" " + id + "_arrive");
-			getOnLine();
+			arrive();
 		}
+
+		private void arrive() {
+			carousel.ridePermits.acquireUninterruptibly();
+			carousel.board(this);
+			updateLower(" " + id + "_ride");
+		}
+		
+
+		public void depart() {
+			carousel.debark(this);
+			carousel.ridePermits.release();
+			updateLower(" " + id + "_leave");
+		}
+		
 
 	}
 
