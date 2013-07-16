@@ -1,6 +1,11 @@
 package com.geolocateandlearn;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.Semaphore;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -14,27 +19,80 @@ import com.geolocateandlearn.annotations.ArchitectureSegment;
 public class AboutActivity extends Activity {
 
 	public class Carousel implements Runnable {
+		private static final int MAX_CONCURRENT_RIDERS = 6;
+
+		private static final long RIDE_TIME = 300;
+
+		private final List<Rider> lineToRide = new ArrayList<Rider>();
+		private final Set<Rider> onHorses = new HashSet<Rider>();
+
+		private final Semaphore ridePermits = new Semaphore(
+				MAX_CONCURRENT_RIDERS, true);
 
 		public void run() {
 			// TODO Auto-generated method stub
+			while (true) {
+				while (ridePermits.availablePermits() != 0) {
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						// no-op
+					}
+				}
+				updateHigher(" Start");
+				try {
+					Thread.sleep(RIDE_TIME);
+				} catch (InterruptedException e) {
+					updateHigher("Ride_interrupted");
+				}
+				updateHigher(" Stop");
+				for (Rider rider : new ArrayList<Rider>(onHorses)) {
+					onHorses.remove(rider);
+					ridePermits.release();
+					rider.depart();
+					updateHigher(" " + rider.getId() + "_Exit");
+				}
+			}
+		}
 
+		public void getOnLine(Rider rider) {
+			// TODO Auto-generated method stub
+			updateHigher(" " + rider.getId() + "_Line");
+			lineToRide.add(rider);
+			ridePermits.acquireUninterruptibly();
+			lineToRide.remove(rider);
+			onHorses.add(rider);
+			updateHigher(" " + rider.getId() + "_Horse");
 		}
 
 	}
 
 	private static final Random random = new Random(System.currentTimeMillis());
 
-	public class Rider {
+	public class Rider implements Runnable {
 		private final int id;
+		private final Carousel carousel;
 
-		public Rider(int riderI) {
+		public Rider(int riderI, Carousel carousel) {
 			id = riderI;
+			this.carousel = carousel;
+		}
+
+		public void depart() {
+			updateLower(" " + id + "_leave");
+		}
+
+		public int getId() {
+			return id;
 		}
 
 		public void getOnLine() {
-			// TODO Auto-generated method stub
+			carousel.getOnLine(this);
+		}
 
-			update(id + ": on line\n");
+		public void run() {
+			updateLower(" " + id + "_arrive");
+			getOnLine();
 		}
 
 	}
@@ -81,11 +139,11 @@ public class AboutActivity extends Activity {
 
 		public void run() {
 			for (int riderI = 0; riderI < MAX_RIDERS; riderI++) {
-				new Rider(riderI).getOnLine();
+				new Thread(new Rider(riderI, carousel)).start();
 				try {
 					Thread.sleep(random.nextInt(MAX_NEW_RIDER_DELAY));
 				} catch (InterruptedException e) {
-					update(riderI + ": Time interrupted");
+					updateLower(riderI + ": Time interrupted");
 				}
 			}
 		}
@@ -123,7 +181,11 @@ public class AboutActivity extends Activity {
 		}
 	};
 
-	public void update(String message) {
+	public void updateLower(String message) {
 		uiHandler.post(new LowerUpdater(message));
+	}
+
+	public void updateHigher(String message) {
+		uiHandler.post(new HigherUpdater(message));
 	}
 }
