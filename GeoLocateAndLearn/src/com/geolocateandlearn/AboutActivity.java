@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Semaphore;
 
 import android.app.Activity;
@@ -19,6 +20,29 @@ import com.geolocateandlearn.annotations.ArchitectureSegment;
 public class AboutActivity extends Activity {
 
 	public class Carousel implements Runnable {
+		private class BrassRingDispenser implements Runnable {
+			// Every fourth rider gets a brass ring.
+			private CountDownLatch brassRingCounter = null;
+
+			public void run() {
+				while (true) {
+					brassRingCounter = new CountDownLatch(4);
+					try {
+						brassRingCounter.await();
+						updateHigher(" BRASS");
+					} catch (InterruptedException e) {
+						updateHigher(" SKIP_BRASS");
+					}
+
+				}
+			}
+
+			public void grab(Rider rider) {
+				// TODO Auto-generated method stub
+				
+			}
+		}
+
 		private static final int MAX_CONCURRENT_RIDERS = 6;
 
 		private static final long RIDE_TIME = 300;
@@ -28,8 +52,12 @@ public class AboutActivity extends Activity {
 		private final Semaphore ridePermits = new Semaphore(
 				MAX_CONCURRENT_RIDERS, true);
 
+		private final BrassRingDispenser ringDispenser = new BrassRingDispenser();
+
 		public void run() {
 			// TODO Auto-generated method stub
+
+			new Thread(ringDispenser).start();
 			while (true) {
 				while (ridePermits.availablePermits() != 0) {
 					try {
@@ -56,12 +84,14 @@ public class AboutActivity extends Activity {
 		}
 
 		public void board(Rider rider) {
+			ringDispenser.grab(rider);
 			onHorses.add(rider);
 		}
 
 	}
 
-	private static final Random random = new Random(System.currentTimeMillis());
+	private static final Random random = new Random(
+			System.currentTimeMillis());
 
 	public class Rider implements Runnable {
 		private final int id;
@@ -86,14 +116,12 @@ public class AboutActivity extends Activity {
 			carousel.board(this);
 			updateLower(" " + id + "_ride");
 		}
-		
 
 		public void depart() {
 			carousel.debark(this);
 			carousel.ridePermits.release();
 			updateLower(" " + id + "_leave");
 		}
-		
 
 	}
 
@@ -101,7 +129,8 @@ public class AboutActivity extends Activity {
 
 	private static final int MAX_NEW_RIDER_DELAY = 1000;
 
-	private final Handler uiHandler = new Handler(Looper.getMainLooper());
+	private final Handler uiHandler = new Handler(
+			Looper.getMainLooper());
 
 	private final StringBuffer outputHigherBuffer = new StringBuffer();
 	private TextView outputHigherTextView;
