@@ -2,7 +2,6 @@ package com.geolocateandlearn;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
@@ -38,8 +37,7 @@ public class AboutActivity extends Activity {
 			}
 
 			public void grab(Rider rider) {
-				// TODO Auto-generated method stub
-				
+				brassRingCounter.countDown();
 			}
 		}
 
@@ -125,7 +123,7 @@ public class AboutActivity extends Activity {
 
 	}
 
-	private static final int MAX_RIDERS = 20;
+	private static final int MAX_RIDERS = 21;
 
 	private static final int MAX_NEW_RIDER_DELAY = 1000;
 
