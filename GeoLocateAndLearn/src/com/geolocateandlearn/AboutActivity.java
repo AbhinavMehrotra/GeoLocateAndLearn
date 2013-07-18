@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Exchanger;
 import java.util.concurrent.Semaphore;
 
 import android.app.Activity;
@@ -64,6 +65,8 @@ public class AboutActivity extends Activity {
 		private final CyclicBarrier entranceGate = new CyclicBarrier(
 				MAX_CONCURRENT_RIDERS, gateFlag);
 
+		private Exchanger<Integer> idExchanger = new Exchanger<Integer>();
+
 		public void run() {
 			// TODO Auto-generated method stub
 
@@ -94,6 +97,13 @@ public class AboutActivity extends Activity {
 		}
 
 		public void board(Rider rider) {
+			Integer otherId;
+			try {
+				otherId = idExchanger.exchange(rider.getId());
+				updateHigher(" " + rider.getId() + "_EXCHANGE_" + otherId);
+			} catch (InterruptedException e) {
+				updateHigher(" " + rider.getId() + "_EXCHANGE_FAIL");
+			}
 			ringDispenser.grab(rider);
 			onHorses.add(rider);
 		}
