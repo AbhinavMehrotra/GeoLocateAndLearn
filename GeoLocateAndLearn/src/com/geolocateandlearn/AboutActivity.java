@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Semaphore;
 
 import android.app.Activity;
@@ -52,6 +54,16 @@ public class AboutActivity extends Activity {
 
 		private final BrassRingDispenser ringDispenser = new BrassRingDispenser();
 
+		private final Runnable gateFlag = new Runnable() {
+
+			public void run() {
+				updateHigher(" GATE");
+			}
+		};
+
+		private final CyclicBarrier entranceGate = new CyclicBarrier(
+				MAX_CONCURRENT_RIDERS, gateFlag);
+
 		public void run() {
 			// TODO Auto-generated method stub
 
@@ -86,12 +98,23 @@ public class AboutActivity extends Activity {
 			onHorses.add(rider);
 		}
 
+		public void approachGate(Rider rider) {
+			try {
+				entranceGate.await();
+				updateHigher(" " + rider.getId() + "_PASS");
+			} catch (InterruptedException e) {
+				updateHigher(" GATE_INTERRUPTED");
+			} catch (BrokenBarrierException e) {
+				// TODO Auto-generated catch block
+				updateHigher(" GATE_BROKEN");
+			}
+		}
+
 	}
 
-	private static final Random random = new Random(
-			System.currentTimeMillis());
+	private static final Random random = new Random(System.currentTimeMillis());
 
-	public class Rider implements Runnable {
+	private class Rider implements Runnable {
 		private final int id;
 		private final Carousel carousel;
 
@@ -110,14 +133,13 @@ public class AboutActivity extends Activity {
 		}
 
 		private void arrive() {
-			carousel.ridePermits.acquireUninterruptibly();
+			carousel.approachGate(this);
 			carousel.board(this);
 			updateLower(" " + id + "_ride");
 		}
 
 		public void depart() {
 			carousel.debark(this);
-			carousel.ridePermits.release();
 			updateLower(" " + id + "_leave");
 		}
 
@@ -127,8 +149,7 @@ public class AboutActivity extends Activity {
 
 	private static final int MAX_NEW_RIDER_DELAY = 1000;
 
-	private final Handler uiHandler = new Handler(
-			Looper.getMainLooper());
+	private final Handler uiHandler = new Handler(Looper.getMainLooper());
 
 	private final StringBuffer outputHigherBuffer = new StringBuffer();
 	private TextView outputHigherTextView;
