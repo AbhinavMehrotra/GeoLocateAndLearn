@@ -21,7 +21,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.geolocateandlearn.annotations.ArchitectureSegment;
 import com.geolocateandlearn.location.Locator;
 import com.geolocateandlearn.model.PointOfInterest;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -34,7 +33,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-@ArchitectureSegment(segment = "nearby", sequence = 1)
 public class NearbyActivity extends FragmentActivity {
 
 	public static final String EXTRA_MESSAGE = "com.geolocateandlearn.NearbyActivity";

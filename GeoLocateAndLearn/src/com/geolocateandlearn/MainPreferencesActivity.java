@@ -1,12 +1,9 @@
 package com.geolocateandlearn;
 
-import com.geolocateandlearn.annotations.ArchitectureSegment;
-
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 
-@ArchitectureSegment(segment = "core")
 public class MainPreferencesActivity extends PreferenceActivity {
 
 	@Override

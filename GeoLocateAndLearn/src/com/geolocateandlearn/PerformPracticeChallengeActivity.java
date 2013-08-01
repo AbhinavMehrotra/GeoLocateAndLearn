@@ -8,11 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.geolocateandlearn.annotations.ArchitectureSegment;
 import com.geolocateandlearn.model.ChallengeResponse;
 import com.geolocateandlearn.model.PracticeChallenge;
 
-@ArchitectureSegment(segment = "practice", sequence = 2)
 public class PerformPracticeChallengeActivity extends Activity {
 
 	protected static final String EXTRA_CHALLENGE = "EXTRA_CHALLENGE";

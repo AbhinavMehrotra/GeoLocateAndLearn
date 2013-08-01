@@ -1,9 +1,5 @@
 package com.geolocateandlearn;
 
-import com.geolocateandlearn.annotations.ArchitectureSegment;
-import com.geolocateandlearn.data.AppPreferences;
-import com.geolocateandlearn.model.ChallengeResponse;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +7,9 @@ import android.view.View;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-@ArchitectureSegment(segment = "practice", sequence = 3)
+import com.geolocateandlearn.data.AppPreferences;
+import com.geolocateandlearn.model.ChallengeResponse;
+
 public class SubmitChallengeResponseActivity extends Activity {
 
 	public static final String EXTRA_RESPONSE = "EXTRA_RESPONSE";

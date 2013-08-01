@@ -16,13 +16,11 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 
-import com.geolocateandlearn.annotations.ArchitectureSegment;
 import com.geolocateandlearn.data.ChallengeDatabase;
 import com.geolocateandlearn.data.PracticeChallengeQuery;
 import com.geolocateandlearn.model.Challenge;
 import com.geolocateandlearn.model.PracticeChallenge;
 
-@ArchitectureSegment(segment = "practice", sequence = 1)
 public class PracticeChallengesActivity extends ListActivity {
 
 	private CheckBox skillListeningCheckbox;
